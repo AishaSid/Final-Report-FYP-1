@@ -1,81 +1,137 @@
-\chapter{Introduction [AS PER SCOPE DOCUMENT]}
+\chapter{Introduction}
 \label{sec:introduction}
-The "Introduction" section sets the foundation for the entire report and should be carefully crafted to give the reader a clear understanding of the project’s scope, objectives, and context. Here’s what you can include:
 
-Background:
+CoWriteIA is an AI-powered writing assistant designed to support creative writers, novelists, researchers, and content creators. Modern writing workflows require managing notes, drafts, characters, scenes, and references across several disconnected tools, which often breaks focus and reduces productivity. Writers struggle to maintain narrative consistency, track earlier ideas, and keep a coherent writing style when working on long projects. Existing tools offer only isolated features such as grammar correction or basic generation and do not provide project-level understanding or semantic memory \cite{test}. 
 
-Begin by providing background information on the broader topic or field your development project is related to.
-Highlight any existing problems, gaps, or opportunities that led to the motivation for your project.
-Include relevant references to previous research, development projects, or technologies. For example, you might want to cite studies or prior systems that failed to address the issues you're focusing on. \cite{test}.
-
-
+CoWriteIA addresses these issues by creating a unified, intelligent workspace where all project files are indexed, searchable, and semantically connected. By integrating project-level memory, context-aware writing, dialogue generation, character management, and research support, the system helps writers maintain consistency and improve their creative process. The platform is designed to reduce cognitive load, avoid fragmented workflows, and provide meaningful AI assistance throughout the writing journey. 
+This chapter presents the background, existing solutions, problem statement, scope, project modules, and work division that form the foundation of this system.
+ 
 \section{Existing Solutions}
 
-For the Existing Solutions section, students should research and describe various solutions, methods, or approaches that have been previously developed to solve the problem they are addressing. This section should include an overview of the different techniques, technologies, or models that are currently in use or have been applied in the past. Students should critically assess the strengths and weaknesses of each solution, highlighting any gaps or limitations that their project aims to address. Additionally, this section should show an understanding of the state-of-the-art in the field and provide context for why the proposed solution is necessary or an improvement over existing ones.
-
+Several writing and AI-assisted tools exist, but each focuses on limited aspects of the writing process. Grammarly offers grammar correction and style suggestions but lacks deep contextual awareness across long projects. Notion AI and Jasper AI provide generative assistance but do not maintain story-level continuity or user-specific writing style. Tools like Scrivener help with organization but have no semantic understanding or AI memory. As a result, writers must repeatedly switch between applications to manage notes, drafts, characters, and research, leading to inefficiency and inconsistent writing flow.
 
 \begin{table}[H]
 \centering
 \caption{Comparison of Existing Solutions}
 \begin{tabular}{|c|p{5cm}|p{5cm}|}
 \hline
-\textbf{System Name}   & \textbf{System Overview} & \textbf{System Limitations} \\ \hline
-System 1               & Brief description of what System 1 does and its primary features. & Highlight the shortcomings or issues with System 1. \\ \hline
-System 2               & Brief description of what System 2 does and its primary features. & Highlight the shortcomings or issues with System 2. \\ \hline
-System 3               & Brief description of what System 3 does and its primary features. & Highlight the shortcomings or issues with System 3. \\ \hline
+\textbf{System Name} & \textbf{System Overview} & \textbf{System Limitations} \\ \hline
+Grammarly & Provides grammar correction, clarity improvements, and tone suggestions. & No project awareness, no memory of earlier chapters, no semantic search. \\ \hline
+Notion AI & Offers AI-assisted content generation and note organization. & Cannot maintain narrative consistency; lacks dialogue and character support. \\ \hline
+Scrivener & Strong organizational tool for large writing projects with chapter/scene structure. & No AI support, no semantic retrieval, no automated gap or style analysis. \\ \hline
 \end{tabular}
 \label{tab:system_comparison}
 \end{table}
 
 \section{Problem Statement}
-Clearly define the specific problem your project aims to solve. Explain why this problem is important and how solving it will contribute to the field. This section is critical as it sets the context for your work.
-This can include technical challenges, system inefficiencies, or user experience problems.
-Why you are developing this system?
-What problem does your software solve?
-(Usually in 10-16 sentences)
 
-\textbf{Example:}
+Writers working on long-form projects often lose track of earlier ideas, character traits, plot points, and stylistic decisions. This leads to inconsistencies, repeated ideas, and a break in narrative flow. Existing tools either provide isolated writing support or document organization but do not combine both with meaningful context. AI tools can generate text but fail to maintain project-level continuity, making the generated text feel disconnected from the writer’s established style or storyline. Writers spend significant time searching through older drafts to recall information \cite{test}.  
 
-\textit{In recent years, the surge in online shopping has resulted in a significant increase in the demand for e-commerce platforms. However, most small to medium-sized businesses struggle to adopt sophisticated e-commerce systems due to high costs, complexity, and lack of customization. Current available solutions either require substantial financial investment or offer limited functionality, leading to inefficiencies in managing product inventories, processing orders, and handling customer interactions.}
-
-\textit{This project aims to address this issue by developing a cost-effective, customizable, and user-friendly e-commerce platform tailored specifically for small to medium-sized enterprises (SMEs). The platform will integrate key functionalities such as inventory management, order tracking, and customer relationship management into a single, unified system that can be easily deployed with minimal technical expertise.}
+CoWriteIA aims to solve these problems by offering an intelligent system that continuously indexes all project content, retrieves relevant context, and assists writers in generating text that aligns with their established narrative and writing style. By maintaining a unified knowledge base and supporting character consistency, scene management, dialogue generation, and semantic search, the system reduces cognitive overhead and improves creative flow.
 
 \section{Scope}
-The scope of this project defines what will be included and excluded, helping to set clear expectations for the reader. This section outlines the boundaries and limitations of the development project.
 
-This can include:
-\begin{itemize}
-    \item What the project will cover: You define the main features and functionality that the project will focus on, including the specific tools, systems, and technologies to be developed.
-    \item What the project will not cover: This outlines the limitations, clarifying any areas that the project will not address (e.g., advanced features or post-deployment support). 
+The scope of CoWriteIA includes building an AI-driven writing environment that supports project management, semantic search, context-aware writing, dialogue generation, research integration, and style adaptation. The system will allow users to upload documents, create new content, store character information, generate dialogues, and retrieve context from a vector-based semantic memory \cite{test}.  
+It will support long-form writing projects such as novels, research documents, and story-driven content.  
 
-\end{itemize}
-(Usually in 14-18 sentences)
+The system will not include plagiarism detection, multimedia editing, or full publishing workflows. It focuses strictly on improving the writing process, maintaining consistency, and providing intelligent assistance throughout the creative workflow.
 
 \section{Modules}
-This section describes the key functional units or modules of the project, each designed to perform a specific task. The breakdown of the project into modules ensures that each part of the system is manageable and addresses specific objectives. Each module should be described in terms of its functionality and how it interacts with other modules in the system. \\
 
-The modules should be logically organized to reflect the overall system workflow, ensuring that each module description is comprehensive but concise.
-\subsection{Module 1}
-[2-4 lines description of the module]
+The project consists of several modules, each responsible for a unique part of the writing workflow.
+
+\subsection{Module 1: Project Indexing and Semantic Memory}
+This module extracts, embeds, and organizes all project content into a semantic database for context-aware retrieval \cite{test}. 
 \begin{enumerate}
-    \item Feature 1
-    \item Feature 2
-\end{enumerate}
-\subsection{Module 2}
-[2-4 lines description of the module]
-\begin{enumerate}
-    \item Feature 1
-    \item Feature 2
+    \item Automatic project indexing and embedding generation.
+    \item Semantic search based on meaning instead of keywords.
 \end{enumerate}
 
-\subsection{Example:}
-\subsubsection{Inventory Management Module}
-This module focuses on inventory management, allowing businesses to efficiently track and manage their product stock levels. It integrates features for adding new products, updating stock information, and generating low-stock alerts.
-
+\subsection{Module 2: Context-Aware Writing Assistant}
+This module provides intelligent writing suggestions that match the user’s tone and project context \cite{test}. 
 \begin{enumerate}
-    \item Ability to add, update, and remove products from inventory.
-    \item Automated alerts for low stock levels to aid in restocking decisions.
+    \item Generates coherent drafts aligned with past content.
+    \item Retrieves relevant information to maintain consistency.
 \end{enumerate}
+
+\subsection{Module 3: Character and Scene Management}
+This module stores and manages characters, scenes, and narrative details. 
+\begin{enumerate}
+    \item Character profiles with traits and relationships.
+    \item Scene storage and tracking.
+\end{enumerate}
+
+\subsection{Module 4: Dialogue Generation}
+Generates natural, character-consistent dialogue suggestions. 
+\begin{enumerate}
+    \item Dialogue generation based on personality and context.
+    \item Supports narrative flow within scenes.
+\end{enumerate}
+
+\subsection{Module 5: Research Integration}
+Fetches factual data from external sources for realistic writing. 
+\begin{enumerate}
+    \item Web-based research retrieval.
+    \item Insertable factual references.
+\end{enumerate}
+
+\subsection{Module 6: Project Query Interface}
+Allows users to ask natural-language questions about their own project. 
+\begin{enumerate}
+    \item Semantic question-answering.
+    \item Source-linked responses.
+\end{enumerate}
+
+\subsection{Module 7: Gap Analysis Module}
+Analyzes draft content to find missing or weak areas. 
+\begin{enumerate}
+    \item Identifies incomplete sections.
+    \item Suggests improvements for clarity and consistency.
+\end{enumerate}
+
+\clearpage
 
 \section{Work Division}
 
+The work completed during FYP-1 was divided into two major iterations.  
+A summary of responsibilities is presented in the tables below.
+
+\subsection*{Iteration I Tasks}
+
+\begin{table}[!ht]
+\centering
+\caption{Work Division for Iteration I}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Task} & \textbf{Ayesha} & \textbf{Junaid} & \textbf{Aisha} \\
+\midrule
+SRS Document & \checkmark & \checkmark & \checkmark \\
+UML Diagrams & \checkmark & \checkmark & \checkmark \\
+UI Design &  & \checkmark & \checkmark \\
+Database Connection &  & \checkmark & \checkmark \\
+Frontend (Main Pages) & \checkmark &  &  \\
+Project Indexing Agent & \checkmark & \checkmark &  \\
+Knowledge Retrieval Agent &  & \checkmark & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection*{Iteration II Tasks}
+
+\begin{table}[!ht]
+\centering
+\caption{Work Division for Iteration II}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Task} & \textbf{Ayesha} & \textbf{Junaid} & \textbf{Aisha} \\
+\midrule
+Inline Copilot Support & \checkmark &  &  \\
+Context-Aware Writing Module &  & \checkmark &  \\
+Gap Analysis Module &  &  & \checkmark \\
+Documentation (All Sections) & \checkmark & \checkmark & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+\clearpage
