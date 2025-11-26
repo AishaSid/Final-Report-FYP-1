@@ -1,43 +1,122 @@
-\chapter{Project Requirements [AS PER FYP1 MID REPORT]}
-This section outlines the necessary requirements for the successful completion of the project. Project requirements can be divided into two main categories: functional requirements, which describe the system’s core operations, and non-functional requirements, which specify performance, security, and usability standards.
-\section{Use-case/Event Response Table/Storyboarding}
-This section describes how users will interact with the system through various scenarios, often referred to as use cases or event responses.\\ A use case represents a specific interaction between the user and the system, detailing the steps involved and the expected system responses. Each use case typically includes key components such as a unique identifier, a description of the interaction, the user or system actor involved, preconditions, the main flow of events, and postconditions.\\ Additionally, storyboarding can be used as a visual aid to depict the sequence of actions, illustrating how the user progresses through the system step by step. Storyboards are helpful for capturing the user experience and ensuring that the design aligns with the intended functionality. \\
+\chapter{Project Requirements}
+This chapter defines the requirements essential for developing CoWriteIA. These requirements were derived from the FYP-1 Proposal, Mid Report, and the SRS document. They describe how the system should behave, how users will interact with it, and what constraints and quality standards must be followed. The requirements are divided into functional and non-functional categories, with additional details about expected user interactions.
 
-Depending on the project, use cases, storyboarding or Event-response table can be chosen as appropriate methodologies to illustrate user interactions. Examples of all the approaches are provided in Appendix A.
+\section{Use-case / Event Response Table / Storyboarding}
+CoWriteIA is designed to support writers by providing AI-assisted tools such as project indexing, semantic retrieval, character management, context-aware writing, and dialogue generation. To understand system behavior, user interactions are described using use cases and event-response flows.
 
+A use case illustrates how a user interacts with the system to complete a specific task. It includes the actor, the event that triggers the interaction, the main steps, preconditions, and the expected system responses. These use cases help clarify system behavior and guide the design of system features.
 
+Given the nature of CoWriteIA, storyboarding can also help by visually demonstrating how a writer navigates the interface: uploading documents, searching for context, generating content, managing characters, or using the inline copilot. These visual sequences ensure the design stays consistent with expected functionality.
+
+Detailed examples of use cases, storyboards, and event-response tables are placed in Appendix A.
 
 \section{Functional Requirements}
-This section describes the functional requirements of the system expressed in the natural language style. This section is typically organized by feature as a system feature name and specific functional requirements associated with this feature. 
+The functional requirements describe the operations the CoWriteIA system must support. These requirements come directly from the system features identified in the Proposal and SRS.
 
-\subsection{Module 1}
-Following are the requirements for module 1:
+\subsection{Module 1: Project Indexing and Semantic Memory}
+This module handles ingestion, indexing, and semantic storage of project documents.
 \begin{enumerate}
-    \item FR1
-    \item FR2
+    \item The system shall allow users to upload project files including text documents, chapters, notes, and research material.
+    \item The system shall extract, segment, and convert uploaded content into embeddings for semantic retrieval.
+    \item The system shall store embeddings in a vector database.
+    \item The system shall provide semantic search capabilities based on meaning rather than keyword matching.
+    \item The system shall return ranked search results with source references.
 \end{enumerate}
 
-\subsection{Module 2}
-Following are the requirements for module 2:
+\subsection{Module 2: Context-Aware Writing Assistant}
+This module generates content aligned with user writing style and project context.
 \begin{enumerate}
-    \item FR1
-    \item FR2
+    \item The system shall analyze previous project content to understand tone, terminology, and style.
+    \item The system shall allow users to generate context-aware text suggestions based on previous chapters or notes.
+    \item The system shall retrieve relevant context automatically when generating new content.
+    \item The system shall maintain style consistency between newly generated and existing content.
+\end{enumerate}
+
+\subsection{Module 3: Character and Scene Management}
+This module manages characters, their traits, and related narrative structures.
+\begin{enumerate}
+    \item The system shall allow users to create, edit, and store character profiles.
+    \item The system shall store attributes such as personality, relationships, behaviors, and backstory.
+    \item The system shall allow users to manage scenes and attach characters to scenes.
+    \item The system shall assist in retrieving character information when generating story text or dialogue.
+\end{enumerate}
+
+\subsection{Module 4: Dialogue Generation}
+This module generates consistent, character-matching dialogue.
+\begin{enumerate}
+    \item The system shall generate dialogue aligned with character personality and tone.
+    \item The system shall allow users to request dialogue for specific characters or scenes.
+    \item The system shall ensure continuity between generated dialogue and existing narrative.
+\end{enumerate}
+
+\subsection{Module 5: Research Integration Module}
+This module retrieves factual information to support realistic writing.
+\begin{enumerate}
+    \item The system shall allow users to search for factual references.
+    \item The system shall fetch external information from trusted research sources.
+    \item The system shall present research results with citations.
+\end{enumerate}
+
+\subsection{Module 6: Project Query Interface}
+This module allows users to ask natural-language questions about their project.
+\begin{enumerate}
+    \item The system shall process user queries related to characters, scenes, chapters, or events.
+    \item The system shall fetch relevant information from the semantic memory.
+    \item The system shall provide answers with linked source passages.
+\end{enumerate}
+
+\subsection{Module 7: Gap Analysis Module}
+This module identifies missing or weak areas of the writer’s draft.
+\begin{enumerate}
+    \item The system shall analyze uploaded chapters for missing elements such as incomplete scenes or inconsistent character behavior.
+    \item The system shall highlight areas needing expansion or clarification.
+    \item The system shall provide suggestions to improve narrative flow and completeness.
 \end{enumerate}
 
 \section{Non-Functional Requirements}
-This section specifies nonfunctional requirements. These quality requirements should be specific, quantitative, and verifiable. The following are some examples of documenting guidelines.
+Non-functional requirements ensure that CoWriteIA performs reliably, efficiently, and securely.
 
 \subsection{Usability}
-Usability requirements deal with ease of learning, ease of use, error avoidance and recovery, the efficiency of interactions, and accessibility. The usability requirements specified here will help the user interface designer create the optimum user experience.
-Example:\\
-
-USE-1: The COS shall allow a user to retrieve the previous meal ordered with a single interaction.
+\begin{enumerate}
+    \item The system shall provide a simple and intuitive interface accessible to writers with minimal technical expertise.
+    \item The system shall allow users to perform core actions such as uploading files, searching, and generating text within no more than three interactions.
+    \item The UI shall clearly present semantic search results with source references.
+\end{enumerate}
 
 \subsection{Performance}
-State specific performance requirements for various system operations. If different functional requirements or features have different performance requirements, it’s appropriate to specify those performance goals right with the corresponding functional requirements, rather than collecting them in this section. 
-Example:\\
+\begin{enumerate}
+    \item The system shall index uploaded documents within 5 seconds for an average chapter-length file.
+    \item Semantic search results shall appear within 2 seconds of a query.
+    \item Generated text responses shall be produced within 3–5 seconds depending on context length.
+\end{enumerate}
 
-PER-1:	 95\% of webpages generated by the COS shall download completely within 4 seconds from the time the user requests the page over a 20 Mbps or faster Internet connection.
+\subsection{Security}
+\begin{enumerate}
+    \item User project data shall be stored securely using encrypted connections.
+    \item Only authenticated users shall access their own documents.
+    \item The system shall not use project data for training without user permission.
+\end{enumerate}
 
+\subsection{Reliability}
+\begin{enumerate}
+    \item The system shall maintain uptime of at least 99% during active usage periods.
+    \item The system shall recover gracefully from API or model failures by retrying or presenting fallback responses.
+\end{enumerate}
 
+\subsection{Maintainability}
+\begin{enumerate}
+    \item The codebase shall follow modular architecture to allow updates to individual agents.
+    \item The system shall support integration of new language models without requiring major structural changes.
+\end{enumerate}
 
+\subsection{Compatibility}
+\begin{enumerate}
+    \item The system shall run on modern browsers including Chrome, Edge, and Firefox.
+    \item The frontend shall be built using Next.js and shall be compatible with desktop and tablet interfaces.
+\end{enumerate}
+
+\subsection{Scalability}
+\begin{enumerate}
+    \item The vector database shall support scaling as the user creates larger projects.
+    \item The system shall handle multiple concurrent requests without significant performance degradation.
+\end{enumerate}
