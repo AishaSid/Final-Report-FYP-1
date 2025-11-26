@@ -1,0 +1,53 @@
+\chapter{Implementation and Testing [UPTO THE CURRENT ITERATION ONLY]}
+
+Give a general description of the functionality, context, and design of your project.
+Provide any background information if necessary.
+
+\section{Algorithm Design}
+Mention the algorithm(s) used in your project to get the work done with regards to major modules. Provide a pseudocode explanation regarding the functioning of the core features. Following are few examples of algorithms/pseudocode. \\
+
+Example:
+\begin{figure}[H] % Use 'H' to place the figure exactly here
+    \centering
+    \includegraphics[width=\textwidth]{images/algoexample.png}
+    \caption{Example Of Algorithm Design}
+    \label{fig:usecase3}
+\end{figure}
+
+
+
+
+\section{External APIs/SDKs}
+Describe the third-party APIs/SDKs used in the project implementation in the following table. Few examples of APIs are provided in the table.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|}
+\hline
+API   and version & Description  & Purpose of   usage & API endpoint/function/class used \\ \hline
+Stripe (version 2020-08-27) & Credit Card payment integration & Sandbox used orders payment & stripe.paymentMethods.create \\ \hline
+Cloudinary & Image and Video management & Uploading Product Images & https://api.cloudinary.com/v1 \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+
+
+\section{Testing Details}
+Once the system has been successfully developed, testing has to be performed to ensure that the system working as intended. 
+
+\subsection{Unit Testing}
+ Each unit test is designed to test a specific function or method independently from other components, helping to identify issues directly related to the functionality being tested. 
+
+Following is the example of Unit testing:
+
+\begin{figure}[H] % Use 'H' to place the figure exactly here
+    \centering
+    \includegraphics[width=\textwidth]{images/unittesting.png}
+    \caption{Example for Unit Testing}
+    \label{fig:usecase3}
+\end{figure}
+
+
