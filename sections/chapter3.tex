@@ -80,36 +80,34 @@ This architectural decomposition supports the system's functional requirements w
     \item \textbf{Modular Design}: Supports future enhancements and feature additions
 \end{itemize}
 
-% \section{Data Design}
-% Explain how the information domain of your system is transformed into data structures. Describe how the major data or system entities are stored, processed, and organized. List any databases or data storage items.
-
-% \section{Domain Model}
-% The domain model is a conceptual representation of the various entities, their attributes, and the relationships between them within the system. It serves as a bridge between the requirements and the design of the software, providing a clear understanding of the business domain and how it interacts with the system being developed. 
-
-% A domain model typically includes key components such as:
-
-% \begin{itemize}
-%     \item \textbf{Entities}: These are the primary objects within the domain that hold data and represent real-world concepts. Each entity is defined by its attributes and behaviors.
-    
-%     \item \textbf{Attributes}: Characteristics or properties of the entities that define their state. For example, a "Customer" entity might have attributes such as \texttt{customerID}, \texttt{name}, \texttt{email}, and \texttt{address}.
-    
-%     \item \textbf{Relationships}: These illustrate how different entities interact with each other. Relationships can be one-to-one, one-to-many, or many-to-many, depending on how entities are associated.
-    
-%     \item \textbf{Associations}: Connections between entities that help clarify their interdependencies. For instance, a "Product" may be associated with a "Category," indicating the type of product it belongs to.
-% \end{itemize}
-
-% By constructing a domain model, developers can better understand the system's requirements, facilitate communication among stakeholders, and guide the subsequent design and implementation phases. It also aids in identifying potential issues early in the development process, ensuring a more robust architecture.
-
-% An example of a domain model for an online shopping system is provided in Appendix B.
 \section{Data Design}
 
-The data design of CoWriteIA defines how the information domain is structured, processed, and stored across the system. Since the application supports project creation, AI-assisted writing, semantic search, character management, and dialogue modelling, the data layer must accommodate a mix of structured and unstructured information. To achieve this, the system separates its storage into three main components: a primary database for structured data, a vector database for embeddings, and file storage for uploaded and exported documents.
+The data design of CoWriteIA transforms functional requirements into structured data models that support \textbf{project creation}, \textbf{AI-assisted writing}, \textbf{semantic search}, \textbf{character management}, and \textbf{dialogue modelling}.
 
-The primary database stores core system entities such as users, projects, documents, characters, chat sessions, and messages. These entities represent the logical workflow of the writing environment and form the backbone of user interaction and content management. The vector database stores high-dimensional embeddings generated from project content, character attributes, and dialogues. These embeddings support semantic search, retrieval-augmented generation, and contextual augmentation during writing sessions. File storage handles uploaded documents and exported project files, ensuring that larger files remain efficiently managed outside the main database.
+\subsection*{Data Organization}
 
-This separation ensures scalability and performance: structured data is quickly accessed via database queries, semantic operations run on optimized vector indexes, and file operations remain independent of the database workload.
+The system organizes data into three primary categories:
 
-Figure~\ref{fig:erd} provides the Entity–Relationship Diagram (ERD) for CoWriteIA, showing the core entities and their relationships. A higher-level conceptual view is presented later as the domain model in Figure~\ref{fig:domainmodel}.
+\begin{itemize}
+    \item \textbf{Relational Data}: User accounts, projects, documents, characters, and chat sessions stored in a structured database with defined schemas and foreign key relationships
+    \item \textbf{Vector Data}: High-dimensional embeddings generated from text content, enabling semantic similarity search and context retrieval
+    \item \textbf{Binary Data}: Uploaded files and exported documents stored separately with metadata linkage
+\end{itemize}
+
+\subsection*{Data Flow and Transformation}
+
+Data flows through multiple transformation stages:
+
+\begin{itemize}
+    \item \textbf{Input Processing}: User actions validate and create/update structured database records
+    \item \textbf{Embedding Generation}: Text content is transformed into vector representations for AI operations
+    \item \textbf{Retrieval Augmentation}: Semantic queries fetch relevant context from vector and relational stores
+    \item \textbf{Output Generation}: AI responses and exports combine retrieved data with generated content
+\end{itemize}
+
+This design ensures \textcolor{blue}{\textbf{data integrity}}, \textcolor{blue}{\textbf{efficient retrieval}}, and \textcolor{blue}{\textbf{scalable processing}}.
+
+Figure~\ref{fig:erd} provides the Entity–Relationship Diagram showing database schema structure, while Figure~\ref{fig:domainmodel} presents the conceptual domain model.
 
 \FloatBarrier
 \begin{figure}[htbp]
@@ -136,11 +134,11 @@ The class diagram represents the object-oriented view of the system and shows cl
 
 \section{Domain Model}
 
-The domain model serves as a conceptual blueprint of the system, describing the key entities, their attributes, and the relationships that define how information flows throughout CoWriteIA. It helps translate functional requirements into a structured and understandable design, guiding both implementation and future system expansion.
+The domain model provides a conceptual view of the system's core entities and their relationships, bridging functional requirements and technical implementation. It describes the key business objects, their attributes, and how they interact within CoWriteIA.
 
-\subsection{Entities and Attributes}
+\subsection*{Entities and Attributes}
 
-The major entities of the system and their attributes are summarized below:
+The major entities of the system include:
 
 \begin{itemize}
     \item \textbf{User}: Represents a system user who owns projects and interacts with the AI. Attributes include \texttt{user\_id}, \texttt{name}, \texttt{email}, \texttt{date\_of\_birth}, \texttt{password\_hash}, \texttt{role}, and \texttt{created\_at}.
