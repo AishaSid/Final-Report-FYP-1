@@ -543,6 +543,13 @@ INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1200.tfm
+INPUT .\images\erd.png
+INPUT .\images\erd.png
+INPUT .\images\erd.png
+INPUT .\images\erd.png
+INPUT .\images\erd.png
+INPUT .\images\erd.png
+INPUT .\images\erd.png
 INPUT .\sections\chapter4.tex
 INPUT .\sections\chapter4.tex
 OUTPUT sections\chapter4.aux

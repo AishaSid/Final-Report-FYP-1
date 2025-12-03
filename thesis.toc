@@ -33,29 +33,32 @@
 \contentsline {chapter}{\numberline {3}System Overview}{11}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Architectural Design}{11}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Data Design}{13}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Domain Model}{13}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Design Models [UPTO THE CURRENT ITERATION ONLY]}{14}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Implementation and Testing [UPTO THE CURRENT ITERATION ONLY]}{15}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Algorithm Design}{15}{section.4.1}%
-\contentsline {section}{\numberline {4.2}External APIs/SDKs}{16}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Testing Details}{16}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Unit Testing}{16}{subsection.4.3.1}%
-\contentsline {chapter}{References}{17}{chapter*.1}%
-\contentsline {chapter}{\numberline {A}Appendices}{19}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Appendix A}{19}{section.A.1}%
-\contentsline {subsection}{\numberline {A.1.1}Use Case Diagram example (Online Shopping System)}{19}{subsection.A.1.1}%
-\contentsline {subsection}{\numberline {A.1.2}Detail Use Case Example}{20}{subsection.A.1.2}%
-\contentsline {subsection}{\numberline {A.1.3}Event-Response Table for a Highway Intersection}{21}{subsection.A.1.3}%
-\contentsline {subsection}{\numberline {A.1.4}Story Board Example For Android App}{22}{subsection.A.1.4}%
-\contentsline {section}{\numberline {A.2}Appendix B}{23}{section.A.2}%
-\contentsline {subsection}{\numberline {A.2.1}Domain Model Example For Online Shopping}{23}{subsection.A.2.1}%
-\contentsline {section}{\numberline {A.3}Appendix C}{24}{section.A.3}%
-\contentsline {subsection}{\numberline {A.3.1}Box And Line Example For Online Shopping}{24}{subsection.A.3.1}%
-\contentsline {subsection}{\numberline {A.3.2}Architecture Pattern Example For Online Shopping}{25}{subsection.A.3.2}%
-\contentsline {subsection}{\numberline {A.3.3}CoWriteIA Detailed Architecture Diagram}{26}{subsection.A.3.3}%
-\contentsline {section}{\numberline {A.4}Appendix D}{27}{section.A.4}%
-\contentsline {subsection}{\numberline {A.4.1}Activity Diagram}{27}{subsection.A.4.1}%
-\contentsline {subsection}{\numberline {A.4.2}Class Diagram}{28}{subsection.A.4.2}%
-\contentsline {subsection}{\numberline {A.4.3}Sequence Diagram}{29}{subsection.A.4.3}%
-\contentsline {subsection}{\numberline {A.4.4}State Transition Diagram}{29}{subsection.A.4.4}%
-\contentsline {subsection}{\numberline {A.4.5}Data Flow Diagram}{30}{subsection.A.4.5}%
+\contentsline {section}{\numberline {3.3}Domain Model}{14}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Entities and Attributes}{14}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Relationships and Associations}{14}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Domain Model Diagram}{15}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Design Models [UPTO THE CURRENT ITERATION ONLY]}{15}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Implementation and Testing [UPTO THE CURRENT ITERATION ONLY]}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Algorithm Design}{17}{section.4.1}%
+\contentsline {section}{\numberline {4.2}External APIs/SDKs}{18}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Testing Details}{18}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Unit Testing}{18}{subsection.4.3.1}%
+\contentsline {chapter}{References}{19}{chapter*.1}%
+\contentsline {chapter}{\numberline {A}Appendices}{21}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Appendix A}{21}{section.A.1}%
+\contentsline {subsection}{\numberline {A.1.1}Use Case Diagram example (Online Shopping System)}{21}{subsection.A.1.1}%
+\contentsline {subsection}{\numberline {A.1.2}Detail Use Case Example}{22}{subsection.A.1.2}%
+\contentsline {subsection}{\numberline {A.1.3}Event-Response Table for a Highway Intersection}{23}{subsection.A.1.3}%
+\contentsline {subsection}{\numberline {A.1.4}Story Board Example For Android App}{24}{subsection.A.1.4}%
+\contentsline {section}{\numberline {A.2}Appendix B}{25}{section.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}Domain Model Example For Online Shopping}{25}{subsection.A.2.1}%
+\contentsline {section}{\numberline {A.3}Appendix C}{26}{section.A.3}%
+\contentsline {subsection}{\numberline {A.3.1}Box And Line Example For Online Shopping}{26}{subsection.A.3.1}%
+\contentsline {subsection}{\numberline {A.3.2}Architecture Pattern Example For Online Shopping}{27}{subsection.A.3.2}%
+\contentsline {subsection}{\numberline {A.3.3}CoWriteIA Detailed Architecture Diagram}{28}{subsection.A.3.3}%
+\contentsline {section}{\numberline {A.4}Appendix D}{29}{section.A.4}%
+\contentsline {subsection}{\numberline {A.4.1}Activity Diagram}{29}{subsection.A.4.1}%
+\contentsline {subsection}{\numberline {A.4.2}Class Diagram}{30}{subsection.A.4.2}%
+\contentsline {subsection}{\numberline {A.4.3}Sequence Diagram}{31}{subsection.A.4.3}%
+\contentsline {subsection}{\numberline {A.4.4}State Transition Diagram}{31}{subsection.A.4.4}%
+\contentsline {subsection}{\numberline {A.4.5}Data Flow Diagram}{32}{subsection.A.4.5}%
