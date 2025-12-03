@@ -1,22 +1,91 @@
-\chapter{System Overview [AS PER FYP1 MID REPORT]}
+\chapter{System Overview}
 
+\subsection*{Introduction}
+This chapter provides a high-level description of the system's overall functionality, context, and architectural design. The aim is to present how the major parts of the system interact and why the system has been decomposed into specific modules and tiers.
 
-
-Give a general description of the functionality, context, and design of your project.
-Provide any background information if necessary.
-\section{Architectural Design}
-Develop a modular program structure and explain the relationships between the modules to achieve the complete functionality of the system. This is a high-level overview of how the system’s modules collaborate with each other to achieve the desired functionality. 
-
-Don’t go into too much detail about the individual subsystems. The main purpose is to gain a general understanding of how and why the system was decomposed, and how the individual parts work together.
-
-Provide a diagram showing the major subsystems and their connections.
+\subsection*{System Overview}
+\textbf{CoWriteIA} is an AI-assisted writing platform designed to support writers through various stages of the creative process. The system enables users to:
 
 \begin{itemize}
-    \item In the initial design stage, create a Box and Line Diagram for a simpler representation of the systems.
-    \item After finalizing the architecture style/pattern diagram (MVC, Client-Server, Layered, Multi-tiered), create a detailed mapping of modules/components to each part of the architecture.
+    \item Create and manage writing projects
+    \item Upload and organize documents
+    \item Manage character profiles and story elements
+    \item Generate and refine written content using AI assistance
 \end{itemize}
 
-To view examples of box and line diagrams and architecture styles, see Appendix C.
+To efficiently support these features, the system separates concerns into distinct, coordinated components: user interaction, application logic, AI processing, and data management.
+
+\section{Architectural Design}
+
+The architecture of CoWriteIA follows a \textbf{multi-tier model}, combining \textbf{client–server} and \textbf{layered} principles. This structure organizes the system into four logical tiers, each with specific responsibilities to ensure maintainability, scalability, and clarity.
+
+\subsection*{Architectural Tiers}
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} l l p{0.5\textwidth} @{}}
+\toprule
+\textbf{Tier} & \textbf{Component} & \textbf{Responsibilities} \\
+\midrule
+\textbf{Presentation} & Frontend Application & 
+User interaction, interface rendering, and user input handling \\
+\midrule
+\textbf{Application Logic} & Backend (API Server) &
+Authentication, business workflows, and project/document/character management \\
+\midrule
+\textbf{AI Processing} & Processing Worker &
+Embeddings generation, semantic retrieval, and AI text generation \\
+\midrule
+\textbf{Data} & Storage Systems &
+Structured data, vector storage, and file management \\
+\bottomrule
+\end{tabular}
+\caption{Architectural Tiers and Responsibilities}
+\label{tab:tiers}
+\end{table}
+
+\subsection*{Data Storage Components}
+\begin{itemize}
+    \item \textbf{Main Database}: Stores structured system data (users, projects, characters)
+    \item \textbf{Vector Database}: Manages embeddings for semantic retrieval and search
+    \item \textbf{File Storage}: Handles uploaded documents and exported files
+\end{itemize}
+
+\subsection*{Architectural Diagram}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/Box-line.png}
+    \caption{\textbf{Box and Line Diagram} showing major subsystems and their connections}
+    \label{fig:Box-line}
+\end{figure}
+
+\subsection*{Diagram Development Process}
+
+\begin{itemize}
+    \item \textbf{Initial Design Stage}: Create a \textit{Box and Line Diagram} for simpler representation of systems
+    \item \textbf{Finalization Stage}: After selecting the architecture style/pattern (MVC, Client-Server, Layered, Multi-tiered), create detailed mapping of modules/components to each part of the architecture
+\end{itemize}
+
+
+
+\subsection*{Design Principles}
+This architectural decomposition supports the system's functional requirements while ensuring:
+
+\begin{itemize}
+    \item \textcolor{blue}{\textbf{Flexibility}}: Components can be modified independently
+    \item \textcolor{blue}{\textbf{Maintainability}}: Clear separation of concerns simplifies updates and debugging
+    \item \textcolor{blue}{\textbf{Scalability}}: Each tier can be scaled independently based on demand
+    \item \textcolor{blue}{\textbf{Security}}: Controlled data flow between tiers with proper authentication
+\end{itemize}
+
+\subsection*{Key Architectural Decisions}
+\begin{itemize}
+    \item \textbf{Separation of AI Processing}: Intensive AI tasks are handled by dedicated workers to maintain API responsiveness
+    \item \textbf{Multi-tier Structure}: Enables independent development, testing, and deployment of each tier
+    \item \textbf{Modular Design}: Supports future enhancements and feature additions
+\end{itemize}
 
 \section{Data Design}
 Explain how the information domain of your system is transformed into data structures. Describe how the major data or system entities are stored, processed, and organized. 

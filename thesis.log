@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.26)  26 NOV 2025 14:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.26)  3 DEC 2025 13:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1222,35 +1222,58 @@ Overfull \hbox (4.36322pt too wide) in paragraph at lines 108--109
 
 ]
 Chapter 3.
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 15.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 10.
 (C:\Users\AK\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \vbox (badness 1062) has occurred while \output is active []
+Underfull \hbox (badness 2762) in paragraph at lines 35--36
+[]\T1/ptm/m/n/12 Authentication, busi-ness work-flows, and
+ []
 
- [13]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 33.
+
+Overfull \hbox (8.31454pt too wide) in paragraph at lines 27--44
+ [][] 
+ []
+
+[13]
+<images/Box-line.png, id=501, 1051.07681pt x 872.66025pt>
+File: images/Box-line.png Graphic file (type png)
+<use images/Box-line.png>
+Package pdftex.def Info: images/Box-line.png  used on input line 59.
+(pdftex.def)             Requested size: 362.77525pt x 301.18796pt.
+ [14
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.78     \item \textcolor
+                         {blue}{\textbf{Maintainability}}: Clear separation ...] [15
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.93 L
+      ist any databases or data storage items. <./images/Box-line.png>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 102.
  (C:\Users\AK\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-Overfull \hbox (4.80446pt too wide) in paragraph at lines 44--44
+Overfull \hbox (4.80446pt too wide) in paragraph at lines 113--113
 |[]\T1/ptm/b/n/17.28 Design Mod-els [UPTO THE CUR-RENT IT-ER-A-TION
  []
 
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 51--55
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 120--124
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--64
+Underfull \hbox (badness 10000) in paragraph at lines 129--133
 
  []
 
-) [15]
+) [17]
 \openout2 = `sections/chapter4.aux'.
 
- (sections/chapter4.tex [16
+ (sections/chapter4.tex [18
 
 
 
@@ -1262,45 +1285,45 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
 
-<images/algoexample.png, id=511, 1163.0953pt x 475.7775pt>
+<images/algoexample.png, id=525, 1163.0953pt x 475.7775pt>
 File: images/algoexample.png Graphic file (type png)
 <use images/algoexample.png>
 Package pdftex.def Info: images/algoexample.png  used on input line 12.
 (pdftex.def)             Requested size: 426.79135pt x 174.58295pt.
-[17
+[19
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.34 \end{table}
                  <./images/algoexample.png>]
-<images/unittesting.png, id=518, 579.66562pt x 224.33812pt>
+<images/unittesting.png, id=532, 579.66562pt x 224.33812pt>
 File: images/unittesting.png Graphic file (type png)
 <use images/unittesting.png>
 Package pdftex.def Info: images/unittesting.png  used on input line 48.
 (pdftex.def)             Requested size: 426.79135pt x 165.17578pt.
-) [18
+) [20
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.60 \include{sections/chapter4}
-                                 <./images/unittesting.png>] (thesis.bbl) [19
+                                 <./images/unittesting.png>] (thesis.bbl) [21
 
 
 
 ]
 \openout2 = `appendix.aux'.
 
- (appendix.tex [20
+ (appendix.tex [22
 
 
 ]
 Appendix A.
-<images/usecaseexample.png, id=534, 735.49782pt x 304.88907pt>
+<images/usecaseexample.png, id=547, 735.49782pt x 304.88907pt>
 File: images/usecaseexample.png Graphic file (type png)
 <use images/usecaseexample.png>
 Package pdftex.def Info: images/usecaseexample.png  used on input line 7.
 (pdftex.def)             Requested size: 426.79135pt x 176.92416pt.
-<images/detailusecase.png, id=535, 545.03625pt x 433.62pt>
+<images/detailusecase.png, id=548, 545.03625pt x 433.62pt>
 File: images/detailusecase.png Graphic file (type png)
 <use images/detailusecase.png>
 Package pdftex.def Info: images/detailusecase.png  used on input line 15.
@@ -1308,13 +1331,13 @@ Package pdftex.def Info: images/detailusecase.png  used on input line 15.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21
+ [23
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.19 
       <./images/usecaseexample.png>]
-<images/eventresponsetable.png, id=541, 472.01344pt x 536.0025pt>
+<images/eventresponsetable.png, id=554, 472.01344pt x 536.0025pt>
 File: images/eventresponsetable.png Graphic file (type png)
 <use images/eventresponsetable.png>
 Package pdftex.def Info: images/eventresponsetable.png  used on input line 23.
@@ -1322,13 +1345,13 @@ Package pdftex.def Info: images/eventresponsetable.png  used on input line 23.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [22
+ [24
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.27 
       <./images/detailusecase.png>]
-<images/storyboard.png, id=547, 497.60907pt x 436.63126pt>
+<images/storyboard.png, id=560, 497.60907pt x 436.63126pt>
 File: images/storyboard.png Graphic file (type png)
 <use images/storyboard.png>
 Package pdftex.def Info: images/storyboard.png  used on input line 31.
@@ -1336,13 +1359,13 @@ Package pdftex.def Info: images/storyboard.png  used on input line 31.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [23
+ [25
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.35 
       <./images/eventresponsetable.png>]
-<images/domainmodel.png, id=553, 563.10374pt x 532.23843pt>
+<images/domainmodel.png, id=566, 563.10374pt x 532.23843pt>
 File: images/domainmodel.png Graphic file (type png)
 <use images/domainmodel.png>
 Package pdftex.def Info: images/domainmodel.png  used on input line 41.
@@ -1350,13 +1373,13 @@ Package pdftex.def Info: images/domainmodel.png  used on input line 41.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [24
+ [26
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.45 
       <./images/storyboard.png>]
-<images/boxandline.png, id=559, 340.27126pt x 213.04594pt>
+<images/boxandline.png, id=573, 340.27126pt x 213.04594pt>
 File: images/boxandline.png Graphic file (type png)
 <use images/boxandline.png>
 Package pdftex.def Info: images/boxandline.png  used on input line 52.
@@ -1364,13 +1387,13 @@ Package pdftex.def Info: images/boxandline.png  used on input line 52.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25
+ [27
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.56 
       <./images/domainmodel.png>]
-<images/Architecturepattern.png, id=565, 509.65407pt x 382.42876pt>
+<images/Architecturepattern.png, id=579, 509.65407pt x 382.42876pt>
 File: images/Architecturepattern.png Graphic file (type png)
 <use images/Architecturepattern.png>
 Package pdftex.def Info: images/Architecturepattern.png  used on input line 60.
@@ -1378,13 +1401,13 @@ Package pdftex.def Info: images/Architecturepattern.png  used on input line 60.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [26
+ [28
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.64 
       <./images/boxandline.png>]
-<images/activityexample.png, id=572, 709.90219pt x 429.10312pt>
+<images/activityexample.png, id=585, 709.90219pt x 429.10312pt>
 File: images/activityexample.png Graphic file (type png)
 <use images/activityexample.png>
 Package pdftex.def Info: images/activityexample.png  used on input line 71.
@@ -1392,13 +1415,13 @@ Package pdftex.def Info: images/activityexample.png  used on input line 71.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [27
+ [29
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.7}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.75 
       <./images/Architecturepattern.png>]
-<images/classexample.png, id=578, 551.05875pt x 525.46312pt>
+<images/classexample.png, id=591, 551.05875pt x 525.46312pt>
 File: images/classexample.png Graphic file (type png)
 <use images/classexample.png>
 Package pdftex.def Info: images/classexample.png  used on input line 80.
@@ -1406,13 +1429,13 @@ Package pdftex.def Info: images/classexample.png  used on input line 80.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [28
+ [30
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.84 
       <./images/activityexample.png>]
-<images/sequenceexample.png, id=584, 578.16pt x 312.41719pt>
+<images/sequenceexample.png, id=597, 578.16pt x 312.41719pt>
 File: images/sequenceexample.png Graphic file (type png)
 <use images/sequenceexample.png>
 Package pdftex.def Info: images/sequenceexample.png  used on input line 88.
@@ -1420,13 +1443,13 @@ Package pdftex.def Info: images/sequenceexample.png  used on input line 88.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29
+ [31
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.9}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.92 
       <./images/classexample.png>]
-<images/statetransitionexample.png, id=590, 520.19344pt x 263.48438pt>
+<images/statetransitionexample.png, id=603, 520.19344pt x 263.48438pt>
 File: images/statetransitionexample.png Graphic file (type png)
 <use images/statetransitionexample.png>
 Package pdftex.def Info: images/statetransitionexample.png  used on input line 96.
@@ -1434,12 +1457,12 @@ Package pdftex.def Info: images/statetransitionexample.png  used on input line 9
 
 
 pdfTeX warning: pdflatex (file ./DFD.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<DFD.pdf, id=591, 614.295pt x 794.97pt>
+<DFD.pdf, id=604, 614.295pt x 794.97pt>
 File: DFD.pdf Graphic file (type pdf)
 <use DFD.pdf>
 Package pdftex.def Info: DFD.pdf  used on input line 104.
 (pdftex.def)             Requested size: 426.79135pt x 552.32666pt.
-[30
+[32
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.10}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1452,7 +1475,7 @@ l.106
        <./images/sequenceexample.png> <./images/statetransitionexample.png>]
 
 pdfTeX warning: pdflatex (file ./DFD2.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<DFD2.pdf, id=598, 614.295pt x 794.97pt>
+<DFD2.pdf, id=612, 614.295pt x 794.97pt>
 File: DFD2.pdf Graphic file (type pdf)
 <use DFD2.pdf>
 Package pdftex.def Info: DFD2.pdf  used on input line 108.
@@ -1465,10 +1488,10 @@ Overfull \hbox (126.06903pt too wide) in paragraph at lines 108--110
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31 <./DFD.pdf>]
+ [33 <./DFD.pdf>]
 Overfull \vbox (42.68332pt too high) has occurred while \output is active []
 
- [32 <./DFD2.pdf>] (thesis.aux (sections/chapter1.aux) (sections/chapter2.aux) (sections/chapter3.aux) (sections/chapter4.aux) (appendix.aux))
+ [34 <./DFD2.pdf>] (thesis.aux (sections/chapter1.aux) (sections/chapter2.aux) (sections/chapter3.aux) (sections/chapter4.aux) (appendix.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -1478,20 +1501,20 @@ L3 programming layer <2024-01-04>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 8D0E95F75B2E4B805D14AF7DA4D4ADC2;12659.
+(rerunfilecheck)             Checksum: 81A20EF82B738E3C9894A74F0A44B5ED;12519.
  ) 
 Here is how much of TeX's memory you used:
- 30294 strings out of 474486
- 599194 string characters out of 5745170
+ 30307 strings out of 474486
+ 599433 string characters out of 5745170
  1942542 words of memory out of 5000000
- 51788 multiletter control sequences out of 15000+600000
+ 51797 multiletter control sequences out of 15000+600000
  622233 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,13n,121p,737b,650s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\AK\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/AK/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/AK/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/AK/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/AK/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on thesis.pdf (37 pages, 2163091 bytes).
+Output written on thesis.pdf (39 pages, 2211972 bytes).
 PDF statistics:
- 737 PDF objects out of 1000 (max. 8388607)
- 166 named destinations out of 1000 (max. 500000)
- 673 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 751 PDF objects out of 1000 (max. 8388607)
+ 170 named destinations out of 1000 (max. 500000)
+ 678 words of extra memory for PDF output out of 10000 (max. 10000000)
 
