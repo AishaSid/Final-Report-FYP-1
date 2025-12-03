@@ -20,25 +20,20 @@ To efficiently support these features, the system separates concerns into distin
 The architecture of CoWriteIA follows a \textbf{multi-tier model}, combining \textbf{client–server} and \textbf{layered} principles. This structure organizes the system into four logical tiers, each with specific responsibilities to ensure maintainability, scalability, and clarity.
 
 \subsection*{Architectural Tiers}
-
-\begin{table}[ht]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}{@{} l l p{0.5\textwidth} @{}}
 \toprule
 \textbf{Tier} & \textbf{Component} & \textbf{Responsibilities} \\
 \midrule
-\textbf{Presentation} & Frontend Application & 
-User interaction, interface rendering, and user input handling \\
+\textbf{Presentation} & Frontend Application & User interaction, interface rendering, and user input handling \\
 \midrule
-\textbf{Application Logic} & Backend (API Server) &
-Authentication, business workflows, and project/document/character management \\
+\textbf{Application Logic} & Backend (API Server) & Authentication, business workflows, and project/document/character management \\
 \midrule
-\textbf{AI Processing} & Processing Worker &
-Embeddings generation, semantic retrieval, and AI text generation \\
+\textbf{AI Processing} & Processing Worker & Embeddings generation, semantic retrieval, and AI text generation \\
 \midrule
-\textbf{Data} & Storage Systems &
-Structured data, vector storage, and file management \\
+\textbf{Data} & Storage Systems & Structured data, vector storage, and file management \\
 \bottomrule
 \end{tabular}
 \caption{Architectural Tiers and Responsibilities}
@@ -53,32 +48,20 @@ Structured data, vector storage, and file management \\
 \end{itemize}
 
 \subsection*{Architectural Diagram}
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{images/Box-line.png}
-    \caption{\textbf{Box and Line Diagram} showing major subsystems and their connections}
+    \caption{Box and Line Diagram showing major subsystems and their connections}
     \label{fig:Box-line}
 \end{figure}
 
-% --- Architectue ---
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.9\textwidth]{images/architecture.png}
-    \caption{CoWriteIA System Architecture Diagram showing multi-tier structure}
-    \label{fig:architecture-diagram}
-\end{figure}
-% ----------------------------
-
+A detailed architecture diagram illustrating the complete multi-tier structure of CoWriteIA is provided in Appendix C (Figure~\ref{fig:cowriteia-architecture}).
 
 \subsection*{Diagram Development Process}
-
 \begin{itemize}
     \item \textbf{Initial Design Stage}: Create a \textit{Box and Line Diagram} for simpler representation of systems
     \item \textbf{Finalization Stage}: After selecting the architecture style/pattern (MVC, Client-Server, Layered, Multi-tiered), create detailed mapping of modules/components to each part of the architecture
 \end{itemize}
-
-
 
 \subsection*{Design Principles}
 This architectural decomposition supports the system's functional requirements while ensuring:
@@ -98,9 +81,8 @@ This architectural decomposition supports the system's functional requirements w
 \end{itemize}
 
 \section{Data Design}
-Explain how the information domain of your system is transformed into data structures. Describe how the major data or system entities are stored, processed, and organized. 
+Explain how the information domain of your system is transformed into data structures. Describe how the major data or system entities are stored, processed, and organized. List any databases or data storage items.
 
-List any databases or data storage items.
 \section{Domain Model}
 The domain model is a conceptual representation of the various entities, their attributes, and the relationships between them within the system. It serves as a bridge between the requirements and the design of the software, providing a clear understanding of the business domain and how it interacts with the system being developed. 
 

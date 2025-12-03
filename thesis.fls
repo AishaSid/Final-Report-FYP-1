@@ -346,6 +346,8 @@ INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\tex\latex\placeins\placeins.sty
 INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\tex\latex\placeins\placeins.sty
 INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\tex\latex\booktabs\booktabs.sty
 INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\tex\latex\booktabs\booktabs.sty
+INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
+INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
 INPUT .\thesis.aux
 INPUT .\thesis.aux
 INPUT thesis.aux
@@ -534,13 +536,6 @@ INPUT .\images\Box-line.png
 INPUT .\images\Box-line.png
 INPUT .\images\Box-line.png
 INPUT .\images\Box-line.png
-INPUT .\images\architecture.png
-INPUT .\images\architecture.png
-INPUT .\images\architecture.png
-INPUT .\images\architecture.png
-INPUT .\images\architecture.png
-INPUT .\images\architecture.png
-INPUT .\images\architecture.png
 INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmri8t.tfm
 INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmri8t.vf
 INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmri8r.tfm
@@ -626,6 +621,13 @@ INPUT .\images\Architecturepattern.png
 INPUT .\images\Architecturepattern.png
 INPUT .\images\Architecturepattern.png
 INPUT .\images\Architecturepattern.png
+INPUT .\images\architecture.png
+INPUT .\images\architecture.png
+INPUT .\images\architecture.png
+INPUT .\images\architecture.png
+INPUT .\images\architecture.png
+INPUT .\images\architecture.png
+INPUT .\images\architecture.png
 INPUT .\images\activityexample.png
 INPUT .\images\activityexample.png
 INPUT .\images\activityexample.png

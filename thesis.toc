@@ -17,24 +17,24 @@
 \contentsline {section}{\numberline {2.2}Functional Requirements}{8}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Module 1: Project Indexing and Semantic Memory}{8}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Module 2: Context-Aware Writing Assistant}{8}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Module 3: Character and Scene Management}{9}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.3}Module 3: Character and Scene Management}{8}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}Module 4: Dialogue Generation}{9}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Module 5: Research Integration Module}{9}{subsection.2.2.5}%
 \contentsline {subsection}{\numberline {2.2.6}Module 6: Project Query Interface}{9}{subsection.2.2.6}%
-\contentsline {subsection}{\numberline {2.2.7}Module 7: Gap Analysis Module}{10}{subsection.2.2.7}%
+\contentsline {subsection}{\numberline {2.2.7}Module 7: Gap Analysis Module}{9}{subsection.2.2.7}%
 \contentsline {section}{\numberline {2.3}Non-Functional Requirements}{10}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Usability}{10}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Performance}{10}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Security}{10}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Reliability}{11}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Maintainability}{11}{subsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.3.4}Reliability}{10}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Maintainability}{10}{subsection.2.3.5}%
 \contentsline {subsection}{\numberline {2.3.6}Compatibility}{11}{subsection.2.3.6}%
 \contentsline {subsection}{\numberline {2.3.7}Scalability}{11}{subsection.2.3.7}%
 \contentsline {chapter}{\numberline {3}System Overview}{13}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Architectural Design}{13}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Data Design}{17}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Domain Model}{17}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Design Models [UPTO THE CURRENT ITERATION ONLY]}{18}{section.3.4}%
+\contentsline {section}{\numberline {3.2}Data Design}{16}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Domain Model}{16}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Design Models [UPTO THE CURRENT ITERATION ONLY]}{16}{section.3.4}%
 \contentsline {chapter}{\numberline {4}Implementation and Testing [UPTO THE CURRENT ITERATION ONLY]}{19}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Algorithm Design}{19}{section.4.1}%
 \contentsline {section}{\numberline {4.2}External APIs/SDKs}{20}{section.4.2}%
@@ -52,9 +52,10 @@
 \contentsline {section}{\numberline {A.3}Appendix C}{28}{section.A.3}%
 \contentsline {subsection}{\numberline {A.3.1}Box And Line Example For Online Shopping}{28}{subsection.A.3.1}%
 \contentsline {subsection}{\numberline {A.3.2}Architecture Pattern Example For Online Shopping}{29}{subsection.A.3.2}%
-\contentsline {section}{\numberline {A.4}Appendix D}{30}{section.A.4}%
-\contentsline {subsection}{\numberline {A.4.1}Activity Diagram}{30}{subsection.A.4.1}%
-\contentsline {subsection}{\numberline {A.4.2}Class Diagram}{31}{subsection.A.4.2}%
-\contentsline {subsection}{\numberline {A.4.3}Sequence Diagram}{32}{subsection.A.4.3}%
-\contentsline {subsection}{\numberline {A.4.4}State Transition Diagram}{32}{subsection.A.4.4}%
-\contentsline {subsection}{\numberline {A.4.5}Data Flow Diagram}{33}{subsection.A.4.5}%
+\contentsline {subsection}{\numberline {A.3.3}CoWriteIA Detailed Architecture Diagram}{30}{subsection.A.3.3}%
+\contentsline {section}{\numberline {A.4}Appendix D}{31}{section.A.4}%
+\contentsline {subsection}{\numberline {A.4.1}Activity Diagram}{31}{subsection.A.4.1}%
+\contentsline {subsection}{\numberline {A.4.2}Class Diagram}{32}{subsection.A.4.2}%
+\contentsline {subsection}{\numberline {A.4.3}Sequence Diagram}{33}{subsection.A.4.3}%
+\contentsline {subsection}{\numberline {A.4.4}State Transition Diagram}{33}{subsection.A.4.4}%
+\contentsline {subsection}{\numberline {A.4.5}Data Flow Diagram}{34}{subsection.A.4.5}%
