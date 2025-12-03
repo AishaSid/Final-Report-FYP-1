@@ -35,10 +35,10 @@
 \contentsline {section}{\numberline {3.2}Data Design}{13}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Class Diagram}{14}{subsection.3.2.1}%
 \contentsline {section}{\numberline {3.3}Domain Model}{14}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Entities and Attributes}{15}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Relationships and Associations}{15}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Domain Model Diagram}{16}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Design Models [UPTO THE CURRENT ITERATION ONLY]}{16}{section.3.4}%
+\contentsline {subsection}{\numberline {3.3.1}Entities and Attributes}{14}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Relationships and Associations}{16}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Domain Model Diagram}{17}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Design Models [UPTO THE CURRENT ITERATION ONLY]}{17}{section.3.4}%
 \contentsline {chapter}{\numberline {4}Implementation and Testing [UPTO THE CURRENT ITERATION ONLY]}{19}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Algorithm Design}{19}{section.4.1}%
 \contentsline {section}{\numberline {4.2}External APIs/SDKs}{20}{section.4.2}%
