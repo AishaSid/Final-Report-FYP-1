@@ -103,15 +103,37 @@ This architectural decomposition supports the system's functional requirements w
 % An example of a domain model for an online shopping system is provided in Appendix B.
 \section{Data Design}
 
-The data design of CoWriteIA defines how the information domain is structured, processed, and stored across the system. Since the application involves project creation, collaborative writing, semantic search, character management, and AI-assisted generation, the data layer must support a wide range of structured and unstructured information. To achieve this, the system separates its storage into three main components: a primary database for structured data, a vector database for AI embeddings, and file storage for uploaded and exported documents.
+The data design of CoWriteIA defines how the information domain is structured, processed, and stored across the system. Since the application supports project creation, AI-assisted writing, semantic search, character management, and dialogue modelling, the data layer must accommodate a mix of structured and unstructured information. To achieve this, the system separates its storage into three main components: a primary database for structured data, a vector database for embeddings, and file storage for uploaded and exported documents.
 
-The primary database stores core system entities such as users, projects, project documents, characters, chat sessions, and messages. These entities represent the logical workflow of the writing environment and form the backbone of user interaction and document management. The vector database stores high-dimensional embeddings generated from project content, characters, and dialogues. These embeddings support semantic search, context retrieval, and knowledge-based augmentation during writing sessions. File storage is used for user-uploaded documents and exported project files, ensuring that large files remain efficiently handled outside the main database.
+The primary database stores core system entities such as users, projects, documents, characters, chat sessions, and messages. These entities represent the logical workflow of the writing environment and form the backbone of user interaction and content management. The vector database stores high-dimensional embeddings generated from project content, character attributes, and dialogues. These embeddings support semantic search, retrieval-augmented generation, and contextual augmentation during writing sessions. File storage handles uploaded documents and exported project files, ensuring that larger files remain efficiently managed outside the main database.
 
-This data separation ensures that the system remains scalable and performant: structured data is retrieved quickly, semantic queries run on optimized vector indexes, and file operations remain independent of database performance. Figure~\ref{fig:domainmodel} illustrates the conceptual domain model that describes how the major data entities relate to each other.
+This separation ensures scalability and performance: structured data is quickly accessed via database queries, semantic operations run on optimized vector indexes, and file operations remain independent of the database workload.
+
+Figure~\ref{fig:erd} provides the Entity–Relationship Diagram (ERD) for CoWriteIA, showing the core entities and their relationships. A higher-level conceptual view is presented later as the domain model in Figure~\ref{fig:domainmodel}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/erd.png}
+    \caption{Entity–Relationship Diagram for CoWriteIA}
+    \label{fig:erd}
+\end{figure}
+
+\subsection{Class Diagram}
+
+The class diagram represents the object-oriented view of the system and shows classes, attributes, and associations used by the application logic. It provides a structural foundation for backend implementation and helps ensure consistency between the conceptual design and the code-level architecture.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/classdiagram.png}
+    \caption{Class Diagram for CoWriteIA}
+    \label{fig:classdiagram}
+\end{figure}
+
+
 
 \section{Domain Model}
 
-The domain model serves as a conceptual blueprint of the system, describing the key entities, their attributes, and the relationships that define how information flows throughout CoWriteIA. This model helps translate functional requirements into a structured and understandable design, guiding both implementation and future expansion of the system.
+The domain model serves as a conceptual blueprint of the system, describing the key entities, their attributes, and the relationships that define how information flows throughout CoWriteIA. It helps translate functional requirements into a structured and understandable design, guiding both implementation and future system expansion.
 
 \subsection{Entities and Attributes}
 
@@ -122,53 +144,53 @@ The major entities of the system and their attributes are summarized below:
     
     \item \textbf{Project}: A workspace created by the user. Attributes include \texttt{project\_id}, \texttt{title}, \texttt{created\_at}, and \texttt{updated\_at}.
     
-    \item \textbf{Document}: Represents an individual chapter or section of a project. Attributes include \texttt{document\_id}, \texttt{title}, \texttt{order\_num}, \texttt{created\_at}, and \texttt{updated\_at}.
+    \item \textbf{Document}: Represents a chapter or section of a project. Attributes include \texttt{document\_id}, \texttt{title}, \texttt{order\_num}, \texttt{created\_at}, and \texttt{updated\_at}.
     
-    \item \textbf{Character Repository}: A collection of user-defined characters that may be linked to one or more projects.
+    \item \textbf{Character Repository}: A user-owned collection that groups all character profiles.
     
     \item \textbf{Character}: Represents a story character. Attributes include \texttt{character\_id}, \texttt{name}, \texttt{traits}, \texttt{history}, \texttt{created\_at}, and \texttt{updated\_at}.
     
-    \item \textbf{ProjectCharacter}: An association class linking projects and characters. It stores project-specific values such as \texttt{age} and \texttt{events}.
+    \item \textbf{ProjectCharacter}: An association class linking characters with specific projects. Stores project-specific values such as \texttt{age} and \texttt{events}.
     
-    \item \textbf{Dialogue}: Represents dialogues spoken by characters. Attributes include \texttt{dialogue\_id}, \texttt{content}, \texttt{context}, and \texttt{emotion\_tag}.
+    \item \textbf{Dialogue}: Represents character dialogues. Attributes include \texttt{dialogue\_id}, \texttt{content}, \texttt{context}, and \texttt{emotion\_tag}.
     
     \item \textbf{ProjectDialogue}: A linking entity that associates dialogues with a project.
     
-    \item \textbf{Chat Session}: An AI chat interaction initiated by the user. The attribute \texttt{chat\_id} identifies each session.
+    \item \textbf{Chat Session}: Represents an AI chat interaction initiated by the user. Identified by \texttt{chat\_id}.
     
-    \item \textbf{Message}: Stores a single message in an AI chat. Attributes include \texttt{message\_id}, \texttt{sent\_by}, \texttt{timestamp}, and \texttt{content}.
+    \item \textbf{Message}: Stores an individual message in a chat session. Attributes include \texttt{message\_id}, \texttt{sent\_by}, \texttt{timestamp}, and \texttt{content}.
     
-    \item \textbf{Search Engine}: Represents semantic search functionality within the system.
+    \item \textbf{Search Engine}: Represents the semantic search component.
     
-    \item \textbf{Search Result}: Stores contextual results from semantic or internet queries. Attributes include \texttt{result\_id}, \texttt{query}, and \texttt{content}.
+    \item \textbf{Search Result}: Stores contextual search outputs. Attributes include \texttt{result\_id}, \texttt{query}, and \texttt{content}.
     
-    \item \textbf{Knowledge Base}: Stores embeddings and their source references. Attributes include \texttt{embedding\_id}, \texttt{vector\_representation}, and \texttt{source\_ids}.
+    \item \textbf{Knowledge Base}: Stores vector embeddings and source references. Attributes include \texttt{embedding\_id}, \texttt{vector\_representation}, and \texttt{source\_ids}.
     
     \item \textbf{Exported Project}: Represents generated output files such as PDF or Word exports.
 \end{itemize}
 
 \subsection{Relationships and Associations}
 
-The domain model defines a set of structured relationships that map how data flows across CoWriteIA:
+The domain model defines the relationships that structure how information flows across the system:
 
 \begin{itemize}
     \item A \textbf{User} owns multiple \textbf{Projects}.
     \item A \textbf{Project} contains multiple \textbf{Documents}.
     \item A \textbf{User} owns a \textbf{Character Repository}, which stores many \textbf{Characters}.
-    \item A \textbf{Project} includes multiple \textbf{Characters} through the \textbf{ProjectCharacter} association.
+    \item A \textbf{Project} includes multiple \textbf{Characters} via \textbf{ProjectCharacter}.
     \item A \textbf{Character} speaks one or more \textbf{Dialogues}.
-    \item A \textbf{Project} may associate specific dialogues using \textbf{ProjectDialogue}.
+    \item A \textbf{Project} associates specific dialogues through \textbf{ProjectDialogue}.
     \item A \textbf{User} initiates a \textbf{Chat Session}.
-    \item A \textbf{Chat Session} contains multiple \textbf{Messages}.
-    \item The \textbf{LLM Chatbot} interacts with both the \textbf{Semantic Search Engine} and the \textbf{Knowledge Base} to generate AI responses.
-    \item The \textbf{Search Engine} produces multiple \textbf{Search Results}, which may be injected back into messages or documents.
+    \item A \textbf{Chat Session} stores multiple \textbf{Messages}.
+    \item The \textbf{LLM Chatbot} interacts with the \textbf{Semantic Search Engine} and \textbf{Knowledge Base} to generate responses.
+    \item The \textbf{Search Engine} produces multiple \textbf{Search Results}, which may be injected into messages or documents.
 \end{itemize}
 
-These relationships ensure that writing, search, character creation, and AI chat flows are coherently integrated across all components of the system.
+These relationships ensure that writing, character creation, semantic search, and AI interactions remain consistent and interconnected across the system.
 
 \subsection{Domain Model Diagram}
 
-Figure~\ref{fig:domainmodel} presents the complete domain model for CoWriteIA. It includes all major entities, attributes, and associations, including weak entities and dotted-line conceptual relationships used to illustrate non-key or transitive connections.
+Figure~\ref{fig:domainmodel} presents the complete domain model for CoWriteIA. It includes all major entities, attributes, and associations, including weak entities and conceptual relationships.
 
 \begin{figure}[htbp]
     \centering
@@ -176,7 +198,6 @@ Figure~\ref{fig:domainmodel} presents the complete domain model for CoWriteIA. I
     \caption{Domain Model Diagram for CoWriteIA}
     \label{fig:domainmodel}
 \end{figure}
-
 
 
 
