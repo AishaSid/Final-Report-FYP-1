@@ -202,28 +202,26 @@ Figure~\ref{fig:domainmodel} presents the complete domain model for CoWriteIA. I
 
 \FloatBarrier
 
+\section{Design Models}
 
+\subsection{State Transition Diagram}
 
-\section{Design Models [UPTO THE CURRENT ITERATION ONLY]}
-Create design models as are applicable to your system. Provide detailed descriptions with each of the models that you add. Also ensure visibility of all diagrams. 
+Figure~\ref{fig:state} illustrates state transitions for key entities based on user actions and system events. The diagram shows how entities move between states:
 
-\textbf{Design Models for Object Oriented Development Approach}
+\begin{itemize}
+    \item \textbf{Project}: Transitions from Draft → Active → Archived/Deleted based on user actions
+    \item \textbf{Document}: Moves through Creating → Editing → Saved → Publishing → Published states
+    \item \textbf{Chat Session}: Cycles between Idle → Processing → Waiting for User → Completed
+    \item \textbf{Character}: Changes from Draft → Active → Archived as needed
+\end{itemize}
 
-The applicable models for the project using object oriented development approach may include:
+These transitions ensure proper lifecycle management and data consistency throughout the system.
 
-•	Activity Diagram\\
-•	Class Diagram\\
-•	Class-level Sequence Diagram\\
-•	[OPTIONAL] State Transition Diagram (for the projects which include event handling and backend processes)\\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/state.png}
+    \caption{State Transition Diagram for CoWriteIA}
+    \label{fig:state}
+\end{figure}
 
-\textbf{Design Models for Procedural Approach}
-
-The applicable models for the project using procedural approach may include:
-
-•	Activity Diagram\\
-•	Data Flow Diagram (data flow diagram should be extended to 2-3 levels. It should clearly list all processes, their sources/sinks and data stores.)\\
-•	System-level Sequence Diagram\\
-•	[OPTIONAL] State Transition Diagram (for the projects which include event handling and backend processes)\\
-
-
-Examples of above diagrams are given in Appendix D.
+\FloatBarrier

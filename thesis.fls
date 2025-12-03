@@ -564,6 +564,15 @@ INPUT .\images\domain.png
 INPUT .\images\domain.png
 INPUT .\images\domain.png
 INPUT .\images\domain.png
+INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1200.tfm
+INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1200.tfm
+INPUT .\images\state.png
+INPUT .\images\state.png
+INPUT .\images\state.png
+INPUT .\images\state.png
+INPUT .\images\state.png
+INPUT .\images\state.png
+INPUT .\images\state.png
 INPUT .\sections\chapter4.tex
 INPUT .\sections\chapter4.tex
 OUTPUT sections\chapter4.aux
@@ -707,6 +716,8 @@ INPUT .\appendix.aux
 INPUT appendix.aux
 INPUT .\thesis.out
 INPUT .\thesis.out
+INPUT C:\Users\AK\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
+INPUT C:\Users\AK\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
 INPUT C:\Users\AK\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1200.pk
 INPUT C:\Users\AK\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1200.pk
 INPUT C:\Users\AK\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
