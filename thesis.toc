@@ -32,9 +32,9 @@
 \contentsline {subsection}{\numberline {2.3.7}Scalability}{11}{subsection.2.3.7}%
 \contentsline {chapter}{\numberline {3}System Overview}{13}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Architectural Design}{13}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Data Design}{16}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Domain Model}{16}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Design Models [UPTO THE CURRENT ITERATION ONLY]}{17}{section.3.4}%
+\contentsline {section}{\numberline {3.2}Data Design}{17}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Domain Model}{17}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Design Models [UPTO THE CURRENT ITERATION ONLY]}{18}{section.3.4}%
 \contentsline {chapter}{\numberline {4}Implementation and Testing [UPTO THE CURRENT ITERATION ONLY]}{19}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Algorithm Design}{19}{section.4.1}%
 \contentsline {section}{\numberline {4.2}External APIs/SDKs}{20}{section.4.2}%
