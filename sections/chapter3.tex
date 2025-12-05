@@ -4,7 +4,7 @@
 This chapter provides a high-level description of the system's overall functionality, context, and architectural design. The aim is to present how the major parts of the system interact and why the system has been decomposed into specific modules and tiers.
 
 \subsection*{System Overview}
-\textbf{CoWriteIA} is an AI-assisted writing platform designed to support writers through various stages of the creative process. The system enables users to:
+	extbf{CoWriteIA} is an AI-assisted writing platform designed to support writers through various stages of the creative process. The system enables users to:\ \cite{notionai,grammarly,scrivener}
 
 \begin{itemize}
     \item Create and manage writing projects
@@ -105,7 +105,7 @@ Data flows through multiple transformation stages:
     \item \textbf{Output Generation}: AI responses and exports combine retrieved data with generated content
 \end{itemize}
 
-This design ensures \textcolor{blue}{\textbf{data integrity}}, \textcolor{blue}{\textbf{efficient retrieval}}, and \textcolor{blue}{\textbf{scalable processing}}.
+This design ensures \textcolor{blue}{\textbf{data integrity}}, \textcolor{blue}{\textbf{efficient retrieval}}, and \textcolor{blue}{\textbf{scalable processing}}. Recent work on efficient local models such as Phi-3 highlights practical on-device capabilities for embedding and retrieval \cite{phi3}.
 
 Figure~\ref{fig:erd} provides the Entity–Relationship Diagram showing database schema structure, while Figure~\ref{fig:domainmodel} presents the conceptual domain model.
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.26)  5 DEC 2025 11:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.26)  5 DEC 2025 11:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1092,6 +1092,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
  (sections/chapter1.tex
 Chapter 1.
 
+Package natbib Warning: Citation `test' on page 1 undefined on input line 4.
+
+
 Underfull \hbox (badness 7344) in paragraph at lines 19--19
 \T1/ptm/m/n/12 clar-ity im-prove-ments, and
  []
@@ -1133,6 +1136,13 @@ l.25
 
 
 ]
+
+Package natbib Warning: Citation `test' on page 2 undefined on input line 28.
+
+
+Package natbib Warning: Citation `test' on page 2 undefined on input line 34.
+
+
 Underfull \vbox (badness 5924) has occurred while \output is active []
 
 
@@ -1146,6 +1156,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.1.1}) ha
                                                   \__shipout_drop_firstpage_...
 l.43 ...e 1: Project Indexing and Semantic Memory}
                                                   ]
+
+Package natbib Warning: Citation `test' on page 3 undefined on input line 44.
+
+
+Package natbib Warning: Citation `test' on page 3 undefined on input line 51.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1227,11 +1244,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-<images/Box-line.png, id=429, 1051.07681pt x 872.66025pt>
+<images/Box-line.png, id=431, 841.04213pt x 696.50212pt>
 File: images/Box-line.png Graphic file (type png)
 <use images/Box-line.png>
 Package pdftex.def Info: images/Box-line.png  used on input line 53.
-(pdftex.def)             Requested size: 362.77525pt x 301.18796pt.
+(pdftex.def)             Requested size: 362.77525pt x 300.42531pt.
 
 Overfull \hbox (0.59439pt too wide) in paragraph at lines 58--59
 \T1/ptm/m/n/12 A de-tailed ar-chi-tec-ture di-a-gram il-lus-trat-ing the com-plete multi-tier struc-ture of CoWriteIA
@@ -1256,30 +1273,27 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) h
                                                   \__shipout_drop_firstpage_...
 l.103     \item \textbf
                        {Embedding Generation}: Text content is transformed i... <./images/Box-line.png>]
-<images/erd.png, id=442, 1382.16376pt x 729.47531pt>
+<images/erd.png, id=445, 1382.16376pt x 729.47531pt>
 File: images/erd.png Graphic file (type png)
 <use images/erd.png>
 Package pdftex.def Info: images/erd.png  used on input line 115.
 (pdftex.def)             Requested size: 426.79135pt x 225.24454pt.
-<images/classdiagram.png, id=443, 1290.0195pt x 981.06525pt>
+<images/classdiagram.png, id=446, 1290.0195pt x 981.06525pt>
 File: images/classdiagram.png Graphic file (type png)
 <use images/classdiagram.png>
 Package pdftex.def Info: images/classdiagram.png  used on input line 128.
 (pdftex.def)             Requested size: 426.79135pt x 324.57588pt.
-
-Underfull \vbox (badness 2617) has occurred while \output is active []
-
  [14
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.144     \item \textbf
-                       {User}: Represents a system user who owns projects an... <./images/erd.png>] [15
+l.139 \subsection*{Entities and Attributes}
+                                            <./images/erd.png>] [15
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.144     \item \textbf
-                       {User}: Represents a system user who owns projects an... <./images/classdiagram.png>]
+l.139 \subsection*{Entities and Attributes}
+                                            <./images/classdiagram.png>]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 144.
  (C:\Users\AK\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
@@ -1302,7 +1316,7 @@ Overfull \hbox (27.09808pt too wide) in paragraph at lines 162--163
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [16]
-<images/domain.png, id=461, 1360.48276pt x 975.645pt>
+<images/domain.png, id=465, 1360.48276pt x 975.645pt>
 File: images/domain.png Graphic file (type png)
 <use images/domain.png>
 Package pdftex.def Info: images/domain.png  used on input line 198.
@@ -1313,24 +1327,24 @@ LaTeX Info: Symbol \textrightarrow not provided by
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
             Default family used instead on input line 212.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 213.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 213.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 213.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 213.
  [17
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.214     \item \textbf
-                       {Chat Session}: Cycles between Idle → Processing �... <./images/domain.png>]
+l.213     \item \textbf
+                       {Document}: Moves through Creating → Editing → Sa... <./images/domain.png>]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 213.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 213.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 213.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 213.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
             Default family used instead on input line 214.
@@ -1346,7 +1360,7 @@ LaTeX Info: Symbol \textrightarrow not provided by
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
             Default family used instead on input line 215.
-<images/state.png, id=469, 3160.80875pt x 1415.2875pt>
+<images/state.png, id=473, 3160.80875pt x 1415.2875pt>
 File: images/state.png Graphic file (type png)
 <use images/state.png>
 Package pdftex.def Info: images/state.png  used on input line 222.
@@ -1373,53 +1387,67 @@ l.67 \include{sections/chapter3}
 
 ]
 Appendix A.
-<images/architecture.png, id=485, 943.1235pt x 861.81975pt>
+<images/usecase.png, id=489, 767.86874pt x 486.91913pt>
+File: images/usecase.png Graphic file (type png)
+<use images/usecase.png>
+Package pdftex.def Info: images/usecase.png  used on input line 7.
+(pdftex.def)             Requested size: 426.79135pt x 270.63708pt.
+<images/architecture.png, id=490, 777.80588pt x 722.2483pt>
 File: images/architecture.png Graphic file (type png)
 <use images/architecture.png>
 Package pdftex.def Info: images/architecture.png  used on input line 68.
-(pdftex.def)             Requested size: 426.79135pt x 389.99826pt.
+(pdftex.def)             Requested size: 426.79135pt x 396.31207pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21]
-Overfull \vbox (105.60167pt too high) has occurred while \output is active []
-
- [22
+ [21
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.72 
-      <./images/architecture.png>]
-<images/activity 3.png, id=495, 1523.6925pt x 1871.99374pt>
+      <./images/usecase.png>]
+<images/activity 3.png, id=496, 1523.6925pt x 1871.99374pt>
 File: images/activity 3.png Graphic file (type png)
 <use images/activity 3.png>
 Package pdftex.def Info: images/activity 3.png  used on input line 78.
 (pdftex.def)             Requested size: 426.79135pt x 524.32607pt.
-) [23
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22
 pdfTeX warning (ext4): destination with the same identifier (name{figure.A.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
+l.82 
+      <./images/architecture.png>]) [23
+pdfTeX warning (ext4): destination with the same identifier (name{figure.A.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
 l.75 \include{appendix}
-                        <./images/activity 3.png>] (thesis.aux (sections/chapter1.aux) (sections/chapter2.aux) (sections/chapter3.aux) (appendix.aux))
+                        <./images/activity 3.png>]
+
+Package natbib Warning: There were undefined citations.
+
+(thesis.aux (sections/chapter1.aux) (sections/chapter2.aux) (sections/chapter3.aux) (appendix.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 6AA753300F9475800621D35851C11F51;9699.
+(rerunfilecheck)             Checksum: CE2BEDEE4E6A0EF702764E48FB50E4E7;9702.
  ) 
 Here is how much of TeX's memory you used:
- 30519 strings out of 474486
- 601798 string characters out of 5745170
+ 30540 strings out of 474486
+ 602187 string characters out of 5745170
  1942542 words of memory out of 5000000
- 52038 multiletter control sequences out of 15000+600000
+ 52055 multiletter control sequences out of 15000+600000
  623334 words of font info for 121 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 117i,12n,121p,737b,650s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,12n,121p,746b,650s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\AK\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\AK\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/AK/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/AK/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/AK/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/AK/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on thesis.pdf (28 pages, 890422 bytes).
+Output written on thesis.pdf (28 pages, 918389 bytes).
 PDF statistics:
- 583 PDF objects out of 1000 (max. 8388607)
- 142 named destinations out of 1000 (max. 500000)
- 553 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 591 PDF objects out of 1000 (max. 8388607)
+ 146 named destinations out of 1000 (max. 500000)
+ 558 words of extra memory for PDF output out of 10000 (max. 10000000)
 

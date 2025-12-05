@@ -1,4 +1,5 @@
 FILENAME=thesis
+OUTPUTNAME=FYP1-FinalReport-F25-314-D-CoWriteIA
 
 LATEX=pdflatex
 LATEXOPT=--shell-escape
@@ -13,7 +14,7 @@ NOMENCL=$(shell locate -i nomencl.ist)
 all: ${FILENAME}.pdf
 
 ${FILENAME}.pdf: ${FILENAME}.tex
-	$(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS) -pdflatex="$(LATEX) $(LATEXOPT) $(NONSTOP) %O %S" $(FILENAME).tex
+	$(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS) -jobname=$(OUTPUTNAME) -pdflatex="$(LATEX) $(LATEXOPT) $(NONSTOP) %O %S" $(FILENAME).tex
 	#latexmk -quiet -pdfps ${FILENAME} 					# No pygmentize
 	#latexmk -r Makefile.rc -quiet -pdfps ${FILENAME} 	# pygmentize
 	#latexmk -r Makefile.rc -quiet -pdflatex="pdflatex --shell-escape %O %S" ${FILENAME}
@@ -23,6 +24,7 @@ nomencl:
 
 clean:
 	latexmk -c ${FILENAME}
+	-del "$(OUTPUTNAME).pdf"
 
 distclean:
 	latexmk -C ${FILENAME}

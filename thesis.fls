@@ -579,6 +579,13 @@ OUTPUT appendix.aux
 INPUT .\appendix.tex
 INPUT .\appendix.tex
 INPUT appendix.tex
+INPUT .\images\usecase.png
+INPUT .\images\usecase.png
+INPUT .\images\usecase.png
+INPUT .\images\usecase.png
+INPUT .\images\usecase.png
+INPUT .\images\usecase.png
+INPUT .\images\usecase.png
 INPUT .\images\architecture.png
 INPUT .\images\architecture.png
 INPUT .\images\architecture.png

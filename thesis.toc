@@ -41,10 +41,10 @@
 \contentsline {subsection}{\numberline {3.4.1}State Transition Diagram}{17}{subsection.3.4.1}%
 \contentsline {chapter}{References}{19}{chapter*.1}%
 \contentsline {chapter}{\numberline {A}Appendices}{21}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Appendix A}{22}{section.A.1}%
+\contentsline {section}{\numberline {A.1}Appendix A}{21}{section.A.1}%
+\contentsline {subsection}{\numberline {A.1.1}Use Case Diagram}{21}{subsection.A.1.1}%
 \contentsline {section}{\numberline {A.2}Appendix B}{22}{section.A.2}%
 \contentsline {section}{\numberline {A.3}Appendix C}{22}{section.A.3}%
 \contentsline {subsection}{\numberline {A.3.1}CoWriteIA Detailed Architecture Diagram}{22}{subsection.A.3.1}%
 \contentsline {section}{\numberline {A.4}Appendix D}{23}{section.A.4}%
 \contentsline {subsection}{\numberline {A.4.1}Activity Diagram}{23}{subsection.A.4.1}%
-\contentsline {subsection}{\numberline {A.4.2}Sequence Diagram}{23}{subsection.A.4.2}%

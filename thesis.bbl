@@ -1,8 +1,24 @@
 \begin{thebibliography}{1}
 
-\bibitem{test}
-A~Kolyshkin and S~Nazarovs.
-\newblock Stability of slowly diverging flows in shallow water.
-\newblock {\em Mathematical Modeling and Analysis}, 2007.
+\bibitem{phi3}
+M.~Abdin, J.~Aneja, H.~Awadallah, A.~Awadalla, A.~Awan, N.~Bach, et~al.
+\newblock Phi-3 technical report: A highly capable language model locally on
+  your phone.
+\newblock {\em arXiv preprint}, 2024.
+
+\bibitem{grammarly}
+Grammarly.
+\newblock Features.
+\newblock Grammarly Website, n.d.
+
+\bibitem{scrivener}
+Literature and Latte.
+\newblock Scrivener overview.
+\newblock Literature and Latte Website, n.d.
+
+\bibitem{notionai}
+Notion.
+\newblock Everything you can do with notion ai.
+\newblock Notion Website, n.d.
 
 \end{thebibliography}
