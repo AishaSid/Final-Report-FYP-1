@@ -8,18 +8,5 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Domain Model Diagram for CoWriteIA}}{17}{figure.3.4}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces State Transition Diagram for CoWriteIA}}{18}{figure.3.5}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Example Of Algorithm Design}}{19}{figure.4.1}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Example for Unit Testing}}{20}{figure.4.2}%
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Use Case Diagram for the Online Shopping System}}{23}{figure.A.1}%
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Detail Use Case Example}}{24}{figure.A.2}%
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Example of Event Response Table}}{25}{figure.A.3}%
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Example of Story Board}}{26}{figure.A.4}%
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Domain Model Example For Online Shopping Application}}{27}{figure.A.5}%
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Box and Line Diagram For Online Shopping Application}}{28}{figure.A.6}%
-\contentsline {figure}{\numberline {A.7}{\ignorespaces Architecture Pattern For Online Shopping Application}}{29}{figure.A.7}%
-\contentsline {figure}{\numberline {A.8}{\ignorespaces CoWriteIA Multi-Tier Architecture Diagram}}{30}{figure.A.8}%
-\contentsline {figure}{\numberline {A.9}{\ignorespaces Activity Diagram For Online Shopping Application}}{31}{figure.A.9}%
-\contentsline {figure}{\numberline {A.10}{\ignorespaces Class Diagram For Online Shopping Application}}{32}{figure.A.10}%
-\contentsline {figure}{\numberline {A.11}{\ignorespaces Sequence Diagram For Online Shopping Application}}{33}{figure.A.11}%
-\contentsline {figure}{\numberline {A.12}{\ignorespaces State Transition Diagram For Online Shopping Application}}{33}{figure.A.12}%
+\contentsline {figure}{\numberline {A.1}{\ignorespaces CoWriteIA Multi-Tier Architecture Diagram}}{22}{figure.A.1}%
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Activity Diagram }}{23}{figure.A.2}%
