@@ -66,11 +66,14 @@
 \include{sections/chapter2}
 \include{sections/chapter3}
 %\include{sections/chapter4}
+\include{sections/conclusions}
 
 \bibliographystyle{plain}
 \bibliography{bib}
 \addcontentsline{toc}{chapter}{References} 
 
+% Avoid inserting a blank page before the appendix
+\let\cleardoublepage\clearpage
 \appendix
 \include{appendix}
 \end{document}
