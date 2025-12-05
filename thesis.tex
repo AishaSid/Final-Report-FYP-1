@@ -49,18 +49,33 @@
 \fypcoordinatorname{Dr. Mohsin S. Khan}
 \title{F25-314-D-CoWriteIA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{acknowledgements}{
+  \clearpage
+  \chapter*{Acknowledgements}
+  % optionally add to TOC:
+  \addcontentsline{toc}{chapter}{Acknowledgements}
+}{\clearpage}
 
+\newenvironment{abstract}{
+  \clearpage
+  \chapter*{Abstract}
+  \addcontentsline{toc}{chapter}{Abstract}
+}{\clearpage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Former document starts below this
 \begin{document}
 
-%\begin{acknowledgements}
-%	Your acknowledgments here
-%\end{acknowledgements}
+% \begin{acknowledgements}
+% 	Your acknowledgments here
+% \end{acknowledgements}
+% \let\cleardoublepage\clearpage
+% \begin{abstract}
+% Briefly state the (1) research problem, (2) methodology, (3) key results, and (4) conclusion. Generally, abstracts are between 150 and 200 words–roughly 10-15 sentences.
+% \end{abstract}
+% \let\cleardoublepage\clearpage
 
-%\begin{abstract}
-%Briefly state the (1) research problem, (2) methodology, (3) key results, and (4) conclusion. Generally, abstracts are between 150 and 200 words–roughly 10-15 sentences.
-%\end{abstract}
+\pagenumbering{arabic}
+\setcounter{page}{1}	
 
 \include{sections/chapter1}
 \include{sections/chapter2}

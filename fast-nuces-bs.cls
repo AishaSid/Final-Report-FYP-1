@@ -251,16 +251,13 @@
 		
 
 
-	
+\setcounter{page}{1}
+\pagenumbering{roman}	
 \tableofcontents
 		\clearpage
 \listoffigures
 		\clearpage
 \listoftables
-\pagenumbering{arabic}
-\setcounter{page}{0}	
-
-
 	
 \end{alwayssingle}
 }
