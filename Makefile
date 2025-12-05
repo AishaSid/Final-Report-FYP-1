@@ -11,10 +11,10 @@ CONTINUOUS=-pvc
 
 NOMENCL=$(shell locate -i nomencl.ist)
 
-all: ${FILENAME}.pdf
+all: ${OUTPUTNAME}.pdf
 
-${FILENAME}.pdf: ${FILENAME}.tex
-	$(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS) -jobname=$(OUTPUTNAME) -pdflatex="$(LATEX) $(LATEXOPT) $(NONSTOP) %O %S" $(FILENAME).tex
+${OUTPUTNAME}.pdf: ${FILENAME}.tex
+	$(LATEXMK) $(LATEXMKOPT) -jobname=$(OUTPUTNAME) -pdflatex="$(LATEX) $(LATEXOPT) $(NONSTOP) %O %S" $(FILENAME).tex
 	#latexmk -quiet -pdfps ${FILENAME} 					# No pygmentize
 	#latexmk -r Makefile.rc -quiet -pdfps ${FILENAME} 	# pygmentize
 	#latexmk -r Makefile.rc -quiet -pdflatex="pdflatex --shell-escape %O %S" ${FILENAME}
@@ -28,6 +28,7 @@ clean:
 
 distclean:
 	latexmk -C ${FILENAME}
+	-del "$(OUTPUTNAME).pdf"
 	rm -rf $(FILENAME).pdfsync
 	find . -type f -name '*~' -delete	
 	find . -type f -name '*.tmp' -delete	

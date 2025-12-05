@@ -1,0 +1,27 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.synctex.gz
+
+# latexmk intermediates
+*.xdv
+*.pdfsync
+
+# VS Code / editor backups
+*~
+*.tmp
+*.texshop
+
+# Generated PDFs except final report (keep the named final PDF)
+thesis.pdf
+appendix.pdf
+DFD.pdf
+DFD2.pdf
