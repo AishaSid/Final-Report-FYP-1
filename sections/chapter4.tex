@@ -1,53 +1,277 @@
-\chapter{Implementation and Testing [UPTO THE CURRENT ITERATION ONLY]}
+\chapter{Implementation and Testing}
+\label{ch:implementation-testing}
 
-Give a general description of the functionality, context, and design of your project.
-Provide any background information if necessary.
+This chapter describes the current implementation status of the CoWriteIA system and the testing strategies applied to validate its functionality. The focus of this phase was to implement the core backend services, major APIs, and conduct rigorous black box testing to ensure that all user-facing functionalities behave correctly according to the system requirements.
+
+The implementation described in this chapter reflects the progress achieved up to the current iteration of the project.
 
 \section{Algorithm Design}
-Mention the algorithm(s) used in your project to get the work done with regards to major modules. Provide a pseudocode explanation regarding the functioning of the core features. Following are few examples of algorithms/pseudocode. \\
+\label{sec:algorithm-design}
 
-Example:
-\begin{figure}[H] % Use 'H' to place the figure exactly here
-    \centering
-    \includegraphics[width=\textwidth]{images/algoexample.png}
-    \caption{Example Of Algorithm Design}
-    \label{fig:usecase3}
-\end{figure}
+The system implements a Retrieval-Augmented Generation (RAG) pipeline to enable intelligent document-based responses. The algorithm focuses only on the core functional requirements: document processing, semantic indexing, context retrieval, and AI response generation.
 
+\subsection{High-Level Algorithm Flow}
 
+The overall system follows this sequence:
 
+\begin{enumerate}
+    \item Document upload by the user
+    \item Text extraction and chunking
+    \item Embedding generation for semantic indexing
+    \item Vector storage
+    \item Query-based context retrieval
+    \item AI-based response generation
+\end{enumerate}
 
-\section{External APIs/SDKs}
-Describe the third-party APIs/SDKs used in the project implementation in the following table. Few examples of APIs are provided in the table.
+This structured flow enables efficient and relevant AI-powered responses.
 
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
-\begin{table}[!h]
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{|l|l|l|l|}
+\subsection{Document Chunking Algorithm}
+
+The system divides uploaded documents into smaller logical chunks. This improves semantic accuracy and ensures efficient storage.
+
+\begin{table}[!ht]
+\centering
+\caption{Document Chunking Algorithm}
+\begin{tabular}{p{0.9\linewidth}}
+\toprule
+\textbf{Pseudocode} \\
+\midrule
+Algorithm: Document Chunking \\
+Input: Full document text \\
+Output: List of text chunks \\
+Split the document into sentences. \\
+Initialize an empty list of chunks. \\
+Append sentences to a chunk until size limit is reached. \\
+Store the completed chunk and start a new one. \\
+Store remaining text as the final chunk. \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection{Embedding Generation and Storage}
+
+Each text chunk is converted into a numerical vector (embedding) that represents semantic meaning. These vectors are stored in a vector database to allow fast similarity search.
+
+\begin{table}[!ht]
+\centering
+\caption{Embedding Generation Algorithm}
+\begin{tabular}{p{0.9\linewidth}}
+\toprule
+\textbf{Pseudocode} \\
+\midrule
+Algorithm: Embedding Generation \\
+Input: List of text chunks \\
+Output: Vector embeddings \\
+Read each text chunk. \\
+Convert text chunks into semantic vector embeddings. \\
+Store embeddings in vector database. \\
+Link embeddings with source chunks. \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection{Context Retrieval Algorithm (RAG)}
+
+When a user submits a query, the system retrieves the most relevant chunks using semantic similarity search.
+
+\begin{table}[!ht]
+\centering
+\caption{Context Retrieval Algorithm (RAG)}
+\begin{tabular}{p{0.9\linewidth}}
+\toprule
+\textbf{Pseudocode} \\
+\midrule
+Algorithm: Context Retrieval (RAG) \\
+Input: User query \\
+Output: Relevant text chunks \\
+Generate embedding for the user query. \\
+Search vector database for similar embeddings. \\
+Select top-k most relevant chunks. \\
+Return these chunks as context. \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection{AI Response Generation Algorithm}
+
+The system combines the retrieved context with the user query and sends it to the language model to generate accurate, context-aware responses.
+
+\begin{table}[!ht]
+\centering
+\caption{AI Response Generation Algorithm}
+\begin{tabular}{p{0.9\linewidth}}
+\toprule
+\textbf{Pseudocode} \\
+\midrule
+Algorithm: AI Response Generation \\
+Input: User query and retrieved context \\
+Output: AI generated response \\
+Combine query and contextual information. \\
+Format the data into a prompt. \\
+Send the prompt to the language model. \\
+Receive and return the generated response. \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+\subsection{Performance Considerations}
+
+\begin{itemize}
+    \item Chunking runs in linear time relative to document size.
+    \item Embedding generation dominates processing time.
+    \item Vector search operates in sub-linear time using approximate nearest neighbor indexing.
+\end{itemize}
+
+\subsection{Reliability and Fault Handling}
+
+The system includes fallback mechanisms to handle:
+
+\begin{itemize}
+    \item Missing embeddings
+    \item Vector database unavailability
+    \item Invalid user input
+\end{itemize}
+
+These ensure stable system behavior under failure scenarios.
+
+\section{External APIs and SDKs}
+\label{sec:external-apis}
+
+The system integrates multiple third-party APIs and SDKs to support AI capabilities, authentication, and data persistence.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3cm}|p{4cm}|p{4cm}|p{3cm}|}
 \hline
-API   and version & Description  & Purpose of   usage & API endpoint/function/class used \\ \hline
-Stripe (version 2020-08-27) & Credit Card payment integration & Sandbox used orders payment & stripe.paymentMethods.create \\ \hline
-Cloudinary & Image and Video management & Uploading Product Images & https://api.cloudinary.com/v1 \\ \hline
-\end{tabular}%
-}
+\textbf{API / SDK} & \textbf{Description} & \textbf{Purpose of Usage} & \textbf{Endpoint/ Function} \\
+\hline
+OpenAI API (v1) & Large language model services & Text generation and embeddings & /v1/chat/completions \\
+\hline
+FastAPI & Python web framework & REST API backend & @app.get(), @app.post() \\
+\hline
+PostgreSQL & Relational database system & User and project data storage & psycopg2 driver \\
+\hline
+VectorDB (FAISS/Pinecone) & Vector similarity engine & Semantic search and retrieval & similarity\_search() \\
+\hline
+\end{tabular}
+\caption{External APIs and SDKs Used}
 \end{table}
 
-
-
 \section{Testing Details}
-Once the system has been successfully developed, testing has to be performed to ensure that the system working as intended. 
+\label{sec:testing-details}
 
-\subsection{Unit Testing}
- Each unit test is designed to test a specific function or method independently from other components, helping to identify issues directly related to the functionality being tested. 
+Testing played a critical role in validating the correctness, reliability, and stability of the implemented system. A combination of black box testing and unit testing strategies was adopted to ensure that the system meets its functional requirements.
 
-Following is the example of Unit testing:
+\subsection{Black Box Testing}
+\label{subsec:blackbox-testing}
 
-\begin{figure}[H] % Use 'H' to place the figure exactly here
+Black box testing was used to validate the external behavior of the system without reference to internal implementation details. The focus was on verifying that system features produced correct outputs when interacting through public interfaces such as API endpoints.
+
+\subsubsection{Purpose of Black Box Testing}
+
+The objective of this testing was to ensure that system functionality aligned with the documented functional requirements by validating response codes, output structures, and observable system behavior.
+
+\subsubsection{Testing Environment}
+
+Testing was conducted using an isolated staging environment that included a running API server, a connected database, and a REST API testing client. All tests were executed externally without accessing source code.
+
+% Insert environment screenshot
+
+\subsubsection{Functional API Coverage}
+
+The following functional modules were tested as black box components:
+
+\begin{itemize}
+    \item Authentication services (registration, login, token validation)
+    \item Project management operations
+    \item File handling operations
+    \item Search and retrieval services
+    \item Chat and conversational APIs
+\end{itemize}
+
+% Insert API success response screenshots
+
+\subsubsection{Workflow and Scenario Testing}
+
+End-to-end user workflows were validated through multi-step test scenarios, including project creation, file indexing, semantic search, and AI-assisted responses.
+
+% Insert workflow execution screenshots
+
+\subsubsection{Negative and Security Testing}
+
+Invalid inputs, unauthorized requests, and forbidden access attempts were tested to verify that the system safely rejected improper usage without exposing internal errors.
+
+% Insert 401 / 403 screenshots
+
+\subsubsection{Error and Edge Case Validation}
+
+Boundary conditions such as missing data, empty result sets, and invalid resource requests were evaluated to ensure stable system responses.
+
+% Insert error response screenshots
+
+\subsubsection{Black Box Test Evidence}
+
+All executed test cases were recorded and maintained as structured documentation.
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/unittesting.png}
-    \caption{Example for Unit Testing}
-    \label{fig:usecase3}
+    \includegraphics[width=0.90\textwidth]{images/tests1.png}
+    \caption{BlackBox Tests Documentation fig1}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/tests2.png}
+    \caption{BlackBox Tests Documentation fig2}
+\end{figure}
+
+\subsubsection{Black Box Testing Summary}
+
+The system demonstrated consistent and correct behavior for valid use cases and safely handled invalid or unauthorized operations.
+
+\subsection{Unit Testing}
+\label{subsec:unit-testing}
+
+Unit testing focused on verifying the internal logic of isolated system components. Each unit was tested independently to ensure that business logic, validation rules, and service-level operations functioned correctly.
+
+\subsubsection{Implemented Unit Test Coverage}
+
+Unit tests were implemented for the following components:
+
+\begin{itemize}
+    \item Authentication API (register, login, token handling)
+    \item Projects API (CRUD operations)
+    \item Files API (upload, download, deletion)
+    \item Search API (semantic, hybrid, and filter-based queries)
+    \item Chat API (conversation handling and context management)
+    \item Complete workflows (multi-step user journeys)
+    \item Error cases (400, 401, 403, 404, 500)
+    \item Edge cases (pagination and unauthorized access)
+\end{itemize}
+
+\subsubsection{Testing Approach}
+
+Service functions, repositories, and helper methods were tested in isolation using mocks to remove external dependencies such as databases and third-party services.
+
+\subsubsection{Failure and Boundary Validation}
+
+Tests confirmed that invalid inputs, unauthorized access, and unsupported operations were handled safely without system failures.
+
+\subsection{Test Evidence}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/tests-summary.png}
+    \caption{Test Execution Results}
+\end{figure}
+
+\section{Test Summary}
+\label{sec:test-summary}
+
+The testing results showed that the system successfully handled valid requests and appropriately rejected invalid or unauthorized access attempts. The core workflows such as project creation, file uploading, semantic search, and AI-assisted responses were verified to function as expected during the current iteration.
+
+All critical defects identified during testing were resolved, and remaining enhancements will be addressed in the next development phase.
 

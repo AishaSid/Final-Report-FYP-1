@@ -1,7 +1,7 @@
 \chapter{Introduction}
 \label{sec:introduction}
 
-CoWriteIA is an AI-powered writing assistant designed to support creative writers, novelists, researchers, and content creators. Modern writing workflows require managing notes, drafts, characters, scenes, and references across several disconnected tools, which often breaks focus and reduces productivity. Writers struggle to maintain narrative consistency, track earlier ideas, and keep a coherent writing style when working on long projects. Existing tools offer only isolated features such as grammar correction or basic generation and do not provide project-level understanding or semantic memory \cite{test}. 
+CoWriteIA is an AI-powered writing assistant designed to support creative writers, novelists, researchers, and content creators. Modern writing workflows require managing notes, drafts, characters, scenes, and references across several disconnected tools, which often breaks focus and reduces productivity. Writers struggle to maintain narrative consistency, track earlier ideas, and keep a coherent writing style when working on long projects. Existing tools offer only isolated features such as grammar correction or basic generation and do not provide project-level understanding or semantic memory~\cite{test}. 
 
 CoWriteIA addresses these issues by creating a unified, intelligent workspace where all project files are indexed, searchable, and semantically connected. By integrating project-level memory, context-aware writing, dialogue generation, character management, and research support, the system helps writers maintain consistency and improve their creative process. The platform is designed to reduce cognitive load, avoid fragmented workflows, and provide meaningful AI assistance throughout the writing journey. 
 This chapter presents the background, existing solutions, problem statement, scope, project modules, and work division that form the foundation of this system.
@@ -25,13 +25,13 @@ Scrivener & Strong organizational tool for large writing projects with chapter/s
 
 \section{Problem Statement}
 
-Writers working on long-form projects often lose track of earlier ideas, character traits, plot points, and stylistic decisions. This leads to inconsistencies, repeated ideas, and a break in narrative flow. Existing tools either provide isolated writing support or document organization but do not combine both with meaningful context. AI tools can generate text but fail to maintain project-level continuity, making the generated text feel disconnected from the writer’s established style or storyline. Writers spend significant time searching through older drafts to recall information \cite{test}.  
+Writers working on long-form projects often lose track of earlier ideas, character traits, plot points, and stylistic decisions. This leads to inconsistencies, repeated ideas, and a break in narrative flow. Existing tools either provide isolated writing support or document organization but do not combine both with meaningful context. AI tools can generate text but fail to maintain project-level continuity, making the generated text feel disconnected from the writer's established style or storyline. Writers spend significant time searching through older drafts to recall information~\cite{test}.
 
 CoWriteIA aims to solve these problems by offering an intelligent system that continuously indexes all project content, retrieves relevant context, and assists writers in generating text that aligns with their established narrative and writing style. By maintaining a unified knowledge base and supporting character consistency, scene management, dialogue generation, and semantic search, the system reduces cognitive overhead and improves creative flow.
 
 \section{Scope}
 
-The scope of CoWriteIA includes building an AI-driven writing environment that supports project management, semantic search, context-aware writing, dialogue generation, research integration, and style adaptation. The system will allow users to upload documents, create new content, store character information, generate dialogues, and retrieve context from a vector-based semantic memory \cite{test}.  
+The scope of CoWriteIA includes building an AI-driven writing environment that supports project management, semantic search, context-aware writing, dialogue generation, research integration, and style adaptation. The system will allow users to upload documents, create new content, store character information, generate dialogues, and retrieve context from a vector-based semantic memory~\cite{test}.  
 It will support long-form writing projects such as novels, research documents, and story-driven content.  
 
 The system will not include plagiarism detection, multimedia editing, or full publishing workflows. It focuses strictly on improving the writing process, maintaining consistency, and providing intelligent assistance throughout the creative workflow.
@@ -41,14 +41,14 @@ The system will not include plagiarism detection, multimedia editing, or full pu
 The project consists of several modules, each responsible for a unique part of the writing workflow.
 
 \subsection{Module 1: Project Indexing and Semantic Memory}
-This module extracts, embeds, and organizes all project content into a semantic database for context-aware retrieval \cite{test}. 
+This module extracts, embeds, and organizes all project content into a semantic database for context-aware retrieval~\cite{test}. 
 \begin{enumerate}
     \item Automatic project indexing and embedding generation.
     \item Semantic search based on meaning instead of keywords.
 \end{enumerate}
 
 \subsection{Module 2: Context-Aware Writing Assistant}
-This module provides intelligent writing suggestions that match the user’s tone and project context \cite{test}. 
+This module provides intelligent writing suggestions that match the user's tone and project context~\cite{test}.
 \begin{enumerate}
     \item Generates coherent drafts aligned with past content.
     \item Retrieves relevant information to maintain consistency.
@@ -129,9 +129,11 @@ Knowledge Retrieval Agent &  & \checkmark & \checkmark \\
 Inline Copilot Support & \checkmark &  &  \\
 Context-Aware Writing Module &  & \checkmark &  \\
 Gap Analysis Module &  &  & \checkmark \\
+Testing & \checkmark & \checkmark & \checkmark \\
 Documentation (All Sections) & \checkmark & \checkmark & \checkmark \\
 \bottomrule
 \end{tabular}
 \end{table}
 \FloatBarrier
 \clearpage
+
