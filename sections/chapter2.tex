@@ -9,7 +9,53 @@ A use case describes the interaction between the primary actor (the writer) and 
 
 In addition to textual use cases, a visual representation in the form of a Use-Case Diagram provides an overview of the major user interactions with CoWriteIA. This includes actions such as uploading documents, retrieving semantic context, generating content with the writing assistant, managing characters, and initiating dialogue generation. Such diagrams help maintain clarity, consistency, and completeness throughout the system design.
 
-A detailed use case example for the core functionality \textbf{Generate Context-Aware Writing (UC-01)} is provided in Appendix~D. This detailed use case outlines the complete interaction flow including preconditions, main flow steps, alternate flows, exceptions, and postconditions. The use case demonstrates how the system retrieves semantic context, processes user requests through the AI model, and delivers generated content while handling various edge cases such as missing embeddings or service unavailability.
+A \textbf{detailed use case} example for the core functionality \textbf{Generate Context-Aware Writing (UC-01)} is provided in Appendix~D. This detailed use case outlines the complete interaction flow including preconditions, main flow steps, alternate flows, exceptions, and postconditions. The use case demonstrates how the system retrieves semantic context, processes user requests through the AI model, and delivers generated content while handling various edge cases such as missing embeddings or service unavailability.
+
+\section{Event--Response Table}
+
+The following table summarizes how CoWriteIA responds to key user-initiated events during writing, project management, and context-aware content generation.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{p{4.2cm} p{10cm}}
+\hline
+\textbf{Event} & \textbf{System Response} \\
+\hline
+
+User uploads a document &
+System extracts text, generates embeddings, indexes the content in the vector database, and updates the project repository. \\
+
+User requests semantic search &
+System retrieves top relevant embeddings, processes them through semantic ranking, and returns contextually relevant text segments. \\
+
+User requests context-aware writing assistance &
+System gathers project context, sends the prompt + context to the AI model, generates aligned text, and displays it in the writing panel. \\
+
+User selects a character for dialogue generation &
+System fetches character traits and stored personality data, and generates dialogue consistent with the character’s profile. \\
+
+User updates character information &
+System stores the updated traits, recalculates related embeddings, and refreshes character-linked semantic memory. \\
+
+User performs research query &
+System connects to external sources (via integrated APIs), retrieves factual data, summarizes it, and provides sources if available. \\
+
+User initiates gap analysis &
+System scans the document structure, identifies missing or weak sections, highlights inconsistencies, and suggests improvements. \\
+
+User edits generated content &
+System updates the project document, regenerates relevant embeddings, and reindexes modified sections. \\
+
+User views project overview &
+System displays indexed chapters, character profiles, notes, semantic connections, and recent AI-generated outputs. \\
+
+AI model becomes unavailable &
+System displays an error message, logs the failure, and advises the user to retry once service availability is restored. \\
+\hline
+\end{tabular}
+\caption{Event--Response Table for CoWriteIA}
+\end{table}
 
 
 

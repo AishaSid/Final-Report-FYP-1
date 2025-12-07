@@ -443,99 +443,43 @@ Boundary conditions, invalid inputs, missing data, and incorrect configurations 
 
 \subsubsection{Authentication and File Services Unit Tests}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|p{2.2cm}|p{3.4cm}|p{4cm}|p{4cm}|p{2cm}|p{2.2cm}|}
-\hline
-\textbf{ID} & \textbf{Component} & \textbf{Test Case} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Status} \\ \hline
-
-U-AUTH-01 & AuthService & User registration (valid) & User created, 200/201 & Passing & PASS \\ \hline
-U-AUTH-02 & AuthService & Token creation & Valid access/refresh tokens returned & Passing & PASS \\ \hline
-U-AUTH-03 & AuthService & Password hashing & Hash stored, verification correct & Passing & PASS \\ \hline
-
-U-FILE-01 & FileService & File metadata retrieval & Correct metadata returned & Passing & PASS \\ \hline
-U-FILE-02 & FileService & File deletion (incl. GridFS) & File + GridFS entries removed & Passing & PASS \\ \hline
-
-\end{tabular}
-\caption{Unit Test Results — Authentication and File Services}
-\end{table}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/wboxutest1.png}
+    \caption{Unit Test Evidence 1}
+    \label{fig:wboxutest1}
+\end{figure}
 
 \subsubsection{Search, Text Extraction, and Embedding Unit Tests}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|p{2.2cm}|p{3.4cm}|p{4cm}|p{4cm}|p{2cm}|p{2.2cm}|}
-\hline
-\textbf{ID} & \textbf{Component} & \textbf{Test Case} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Status} \\ \hline
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/wboxutest2.png}
+    \caption{Unit Test Evidence 2}
+    \label{fig:wboxutest2}
+\end{figure}
 
-U-SEARCH-01 & SearchService & Autocomplete suggestions & Relevant suggestions returned & Passing & PASS \\ \hline
 
-U-TEXT-01 & TextExtractionService & Text extraction & Extracted text matches source & Passing & PASS \\ \hline
-U-TEXT-02 & TextExtractionService & Text chunking & Semantic chunks generated & Passing & PASS \\ \hline
-U-TEXT-03 & TextExtractionService & Empty text handling & Safe empty response & Passing & PASS \\ \hline
-U-TEXT-04 & TextExtractionService & Incremental processing & Correct incremental output & Passing & PASS \\ \hline
-
-U-EMB-01 & EmbeddingService & Similarity calculation & Correct similarity score & Passing & PASS \\ \hline
-U-EMB-02 & EmbeddingService & Embedding statistics & Accurate statistics & Passing & PASS \\ \hline
-U-EMB-03 & EmbeddingService & Embedding generation (mock) & Correct or mocked embedding & Partial & FAIL \\ \hline
-
-\end{tabular}
-\caption{Unit Test Results — Search, Text Extraction, and Embedding Services}
-\end{table}
-
-% -------------------------------------------------------------
-% ----------------------- TABLE 3 ------------------------------
-% -------------------------------------------------------------
 
 \subsubsection{LLM, Editing, and Copilot Unit Tests}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|p{2.2cm}|p{3.3cm}|p{3.9cm}|p{4cm}|p{2.2cm}|p{2.2cm}|}
-\hline
-\textbf{ID} & \textbf{Component} & \textbf{Test Case} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Status} \\ \hline
-
-U-GROQ-01..08 & GroqService & Completion, formatting, errors, model listing & Correct structured responses & All passing & PASS \\ \hline
-
-U-EDIT-01..05 & EditProposalService & Detection, proposal, parsing, diff, prompts & All edits and diffs accurate & Passing 12/12 & PASS \\ \hline
-
-U-COP-01..05 & CopilotService & Suggestions, style analysis, prompt building & Suggestions + context generated & 6/8 passing & PARTIAL \\ \hline
-
-\end{tabular}
-\caption{Unit Test Results — LLM Integration, Edit Proposals, and Copilot}
-\end{table}
-
-% -------------------------------------------------------------
-% ----------------------- TABLE 4 ------------------------------
-% -------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/wboxutest3.png}
+    \caption{Unit Test Evidence 3}
+    \label{fig:wboxutest3}
+\end{figure}
 
 \subsubsection{RAG Context, Entity Extraction, and Relationship Discovery Unit Tests}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|p{2.2cm}|p{3.4cm}|p{4cm}|p{4cm}|p{2cm}|p{2.2cm}|}
-\hline
-\textbf{ID} & \textbf{Component} & \textbf{Test Case} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Status} \\ \hline
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/wboxutest4.png}
+    \caption{Unit Test Evidence 4}
+    \label{fig:wboxutest4}
+\end{figure}
 
-U-RAG-01 & RAGContextService & Context assembly & Assembled context correctly & 2/5 passing & PARTIAL \\ \hline
-U-RAG-02 & RAGContextService & LLM formatting & Proper formatting & 2/5 passing & PARTIAL \\ \hline
-U-RAG-03 & RAGContextService & Project overview & Should validate input & Validation issue & FAIL \\ \hline
-U-RAG-04 & RAGContextService & Entity context & Should assemble entity data & Validation issue & FAIL \\ \hline
-U-RAG-05 & RAGContextService & File filtering & Correct object filtering & ObjectId error & FAIL \\ \hline
-
-U-ENT-01..05 & EntityExtractionService & Validation, NER, name detection & Accurate entity extraction & 2/5 passing & MIXED \\ \hline
-
-U-REL-01..09 & RelationshipDiscoveryService & Entity, context, classification & Relationship detection & 7/9 passing & PARTIAL \\ \hline
-
-\end{tabular}
-\caption{Unit Test Results — RAG Context, Entity Extraction, and Relationship Discovery}
-\end{table}
-
-% -------------------------------------------------------------
-% ----------------------- TABLE 5 ------------------------------
-% -------------------------------------------------------------
-
-\subsubsection{Updated Unit Test Summary}
+\subsubsection{Unit Test Summary}
 
 \begin{table}[h!]
 \centering
@@ -551,35 +495,6 @@ Overall Pass Rate & 91\% & Stable with minor issues \\ \hline
 \caption{Overall Unit Testing Summary}
 \end{table}
 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth]{images/wboxutest1.png}
-    \caption{Unit Test Evidence 1}
-    \label{fig:wboxutest1}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth]{images/wboxutest2.png}
-    \caption{Unit Test Evidence 2}
-    \label{fig:wboxutest2}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth]{images/wboxutest3.png}
-    \caption{Unit Test Evidence 3}
-    \label{fig:wboxutest3}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth]{images/wboxutest4.png}
-    \caption{Unit Test Evidence 4}
-    \label{fig:wboxutest4}
-\end{figure}
-
 \subsection{Test Evidence}
 
 \begin{figure}[H]
@@ -587,6 +502,7 @@ Overall Pass Rate & 91\% & Stable with minor issues \\ \hline
     \includegraphics[width=0.90\textwidth]{images/tests-summary.png}
     \caption{Test Execution Results}
 \end{figure}
+
 
 \section{Test Summary}
 \label{sec:test-summary}
