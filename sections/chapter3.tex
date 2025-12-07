@@ -223,10 +223,31 @@ This subsection presents sequence diagrams for the four main system flows, based
         \caption{Sequence Diagram: File Upload \& Chunking}
         \label{fig:seq-upload-chunk-image}
     \end{figure}
+    \FloatBarrier
 
-    
+\subsubsection*{2. Embedding Generation \& Storage}
+    \textbf{Actors:} API/Orchestrator, EmbeddingService, TextChunkRepository, ChromaService
 
-\subsubsection*{2. Semantic Search / RAG Context Retrieval}
+    \begin{enumerate}
+        \item \textbf{Batch Encoding:} The system extracts content strings from the chunks and calls \texttt{EmbeddingService.generate\_embeddings}. This runs a threadpool execution where the model loads lazily to convert text into dense vector representations.
+        \item \textbf{Metadata Persistence:} The system iterates through the original chunks and generated embeddings simultaneously. For each pair, a \texttt{TextChunk} model is built and saved to MongoDB via the \texttt{TextChunkRepository}.
+        \item \textbf{Vector Indexing:} If the \texttt{ChromaService} is configured and available:
+        \begin{itemize}
+            \item The system maps the saved chunks to Chroma-compatible entries (ID, vector, and metadata).
+            \item It performs a bulk insert via \texttt{ChromaService.add\_embeddings} to enable semantic search.
+        \end{itemize}
+        \item \textbf{Fallback:} If Chroma is unavailable, the embeddings remain stored solely within the MongoDB documents.
+    \end{enumerate}
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth]{images/seqdiag_EmbeddingGenerationAndStorage.png}
+        \caption{Sequence Diagram: Embedding Generation \& Storage}
+        \label{fig:seqdiag_embedding_generation_storage}
+    \end{figure}
+    \FloatBarrier
+
+\subsubsection*{3. Semantic Search / RAG Context Retrieval}
     \textbf{Actors:} User, API Endpoint, RAGContextService, ChromaService, SearchService, TextChunkRepository
 
     \begin{enumerate}
@@ -243,32 +264,48 @@ This subsection presents sequence diagrams for the four main system flows, based
         \caption{Sequence Diagram: Semantic Search / RAG Context Retrieval}
         \label{fig:seqdiag_semantic_rag}
     \end{figure}
+    \FloatBarrier
 
-\subsubsection*{3. AI Response Generation}
+\subsubsection*{4. AI Response Generation}
     \textbf{Actors:} User, API Endpoint, RAGContextService, AIChatService, GroqService, MessageRepository
 
-\begin{enumerate}
-    \item User sends a message.
-    \item API calls \texttt{RAGContextService.assemble\_context}.
-    \item Context is formatted for LLM.
-    \item AIChatService builds prompt and calls GroqService (LLM).
-    \item LLM response is cleaned and saved via MessageRepository.
-    \item Response returned to user.
-\end{enumerate}
+    \begin{enumerate}
+        \item User sends a message.
+        \item API calls \texttt{RAGContextService.assemble\_context}.
+        \item Context is formatted for LLM.
+        \item AIChatService builds prompt and calls GroqService (LLM).
+        \item LLM response is cleaned and saved via MessageRepository.
+        \item Response returned to user.
+    \end{enumerate}
 
-\subsubsection*{4. Reprocessing \& Incremental Update}
-    extbf{Actors:} User/Admin, TextChunkRepository, FileRepository, TextExtractionService, EmbeddingService
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth]{images/seqdiag_AIResponseGeneration.png}
+        \caption{Sequence Diagram: AI Response Generation}
+        \label{fig:seqdiag_ai_response_generation}
+    \end{figure}
+    \FloatBarrier
 
-\begin{enumerate}
-    \item File is marked for reprocessing.
-    \item Existing chunks are deleted.
-    \item File is marked ready for processing.
-    \item Text is extracted and chunked again.
-    \item Chunks are inserted.
-    \item Embeddings are regenerated and stored.
-\end{enumerate}
+\subsubsection*{5. Reprocessing \& Incremental Update}
+    \textbf{Actors:} User/Admin, TextChunkRepository, FileRepository, TextExtractionService, EmbeddingService
 
-\FloatBarrier
+    \begin{enumerate}
+        \item File is marked for reprocessing.
+        \item Existing chunks are deleted.
+        \item File is marked ready for processing.
+        \item Text is extracted and chunked again.
+        \item Chunks are inserted.
+        \item Embeddings are regenerated and stored.
+    \end{enumerate}
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth]{images/seqdiag_ReprocessingAndIncrementalUpdate.png}
+        \caption{Sequence Diagram: Reprocessing \& Incremental Update}
+        \label{fig:seqdiag_reprocessing_incremental_update}
+    \end{figure}
+    \FloatBarrier
+
 \subsection{State Transition Diagram}
 
 Figure~\ref{fig:state} illustrates state transitions for key entities based on user actions and system events. The diagram shows how entities move between states:

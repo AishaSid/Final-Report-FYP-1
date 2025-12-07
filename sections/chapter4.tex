@@ -118,7 +118,7 @@ The system splits extracted text into sentence-aware chunks within a target size
     \item Returns \texttt{TextChunk} Pydantic models; persistence occurs later (e.g., in \texttt{store\_text\_chunks\_with\_embeddings}).
 \end{itemize}
 
-\subsection{Embedding Generation and Storage}
+\subsection{Pseudocode: Embedding Generation and Storage}
 
 This stage encodes chunked text into dense vectors and persists both the metadata and vectors. It maps to \texttt{EmbeddingService} and \texttt{ChromaService} usage in the codebase.
 
