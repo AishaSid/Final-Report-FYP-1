@@ -1,12 +1,17 @@
 \chapter{Project Requirements}
 This chapter defines the requirements essential for developing CoWriteIA. These requirements were derived from the FYP-1 Proposal, Mid Report, and the SRS document. They describe how the system should behave, how users will interact with it, and what constraints and quality standards must be followed. The requirements are divided into functional and non-functional categories, with additional details about expected user interactions.
 
-\section{Use-case / Event Response Table / Storyboarding}
-CoWriteIA is designed to support writers by providing AI-assisted tools such as project indexing, semantic retrieval, character management, context-aware writing, and dialogue generation. To understand system behavior, user interactions are described using use cases and event-response flows.
+\section{Use-case}
 
-A use case illustrates how a user interacts with the system to complete a specific task. It includes the actor, the event that triggers the interaction, the main steps, preconditions, and the expected system responses. These use cases help clarify system behavior and guide the design of system features.
+CoWriteIA provides writers with AI-assisted features such as project indexing, semantic retrieval, character management, context-aware writing, and dialogue generation. To clearly define how users interact with these features, system behavior is modeled through detailed use cases.
 
-Given the nature of CoWriteIA, storyboarding can also help by visually demonstrating how a writer navigates the interface: uploading documents, searching for context, generating content, managing characters, or using the inline copilot. These visual sequences ensure the design stays consistent with expected functionality.
+A use case describes the interaction between the primary actor (the writer) and the system to accomplish a specific task. Each use case outlines the trigger event, preconditions, main workflow steps, and system responses. These models help ensure that system functionality aligns with user expectations and guide the design of interactive features.
+
+In addition to textual use cases, a visual representation in the form of a Use-Case Diagram provides an overview of the major user interactions with CoWriteIA. This includes actions such as uploading documents, retrieving semantic context, generating content with the writing assistant, managing characters, and initiating dialogue generation. Such diagrams help maintain clarity, consistency, and completeness throughout the system design.
+
+A detailed use case example for the core functionality \textbf{Generate Context-Aware Writing (UC-01)} is provided in Appendix~D. This detailed use case outlines the complete interaction flow including preconditions, main flow steps, alternate flows, exceptions, and postconditions. The use case demonstrates how the system retrieves semantic context, processes user requests through the AI model, and delivers generated content while handling various edge cases such as missing embeddings or service unavailability.
+
+
 
 \section{Functional Requirements}
 The functional requirements describe the operations the CoWriteIA system must support. These requirements come directly from the system features identified in the Proposal and SRS.

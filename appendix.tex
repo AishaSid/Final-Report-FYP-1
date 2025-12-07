@@ -1,66 +1,25 @@
 \appendix
 \chapter{Appendices}
-\section{Appendix A}
- \subsection{Use Case Diagram}
-\begin{figure}[H] % Use 'H' to place the figure exactly here
+
+\section{Appendix A: System Diagrams}
+
+\subsection{Use Case Diagram}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/usecase.png}
     \caption{Use Case Diagram CoWriteIA}
-    \label{fig:usecase1}
+    \label{fig:usecase}
 \end{figure}
 
-% \subsection{Detail Use Case Example}
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     \centering
-%     \includegraphics[width=\textwidth]{images/detailusecase.png}
-%     \caption{Detail Use Case Example}
-%     \label{fig:usecase2}
-% \end{figure}
+\subsection{Activity Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/activity 3.png}
+    \caption{Activity Diagram}
+    \label{fig:activity}
+\end{figure}
 
-% \subsection{Event-Response Table for a Highway Intersection}
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     \centering
-%     \includegraphics[width=\textwidth]{images/eventresponsetable.png}
-%     \caption{Example of Event Response Table}
-%     \label{fig:usecase3}
-% \end{figure}
-
-% \subsection{Story Board Example For Android App}
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     \centering
-%     \includegraphics[width=\textwidth]{images/storyboard.png}
-%     \caption{Example of Story Board}
-%     \label{fig:usecase3}
-% \end{figure}
-
-\section{Appendix B}
-
-% \subsection{Domain Model Example For Online Shopping}
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     \centering
-%     \includegraphics[width=\textwidth]{images/domainmodel.png}
-%     \caption{Domain Model Example For Online Shopping Application}
-%     \label{fig:usecase3}
-% \end{figure}
-
-
-\section{Appendix C}
-
-% \subsection{Box And Line Example For Online Shopping}
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     \centering
-%     \includegraphics[width=\textwidth]{images/boxandline.png}
-%     \caption{Box and Line Diagram For Online Shopping Application}
-%     \label{fig:usecase3}
-% \end{figure}
-
-% \subsection{Architecture Pattern Example For Online Shopping}
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     \centering
-%     \includegraphics[width=\textwidth]{images/Architecturepattern.png}
-%     \caption{Architecture Pattern For Online Shopping Application}
-%     \label{fig:usecase3}
-% \end{figure}
+\section{Appendix B: Architecture Diagram}
 
 \subsection{CoWriteIA Detailed Architecture Diagram}
 \begin{figure}[H]
@@ -70,48 +29,103 @@
     \label{fig:cowriteia-architecture}
 \end{figure}
 
-\section{Appendix D}
+\section{Appendix C: User Interface Screenshots}
 
-\subsection{Activity Diagram}
-\begin{figure}[H] % Use 'H' to place the figure exactly here
+\subsection{Dashboard Interface}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/activity 3.png}
-    \caption{Activity Diagram }
-    \label{fig:usecase3}
+    \includegraphics[width=\textwidth]{images/ui5.jpeg}
+    \caption{CoWriteIA Dashboard Interface}
+    \label{fig:ui1}
 \end{figure}
 
+\subsection{Writing Environment Interface}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/ui1.jpeg}
+    \caption{Writing Environment Interface}
+    \label{fig:ui2}
+\end{figure}
 
-% \subsection{Class Diagram}
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     \centering
-%     \includegraphics[width=\textwidth]{images/classexample.png}
-%     \caption{Class Diagram For Online Shopping Application}
-%     \label{fig:usecase3}
-% \end{figure}
+\subsection{Writing Assistant Interface}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/ui3.jpeg}
+    \caption{Writing Assistant Interface}
+    \label{fig:ui3}
+\end{figure}
 
-% \subsection{Sequence Diagram}
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     \centering
-%     \includegraphics[width=\textwidth]{images/sequenceexample.png}
-%     \caption{Sequence Diagram For Online Shopping Application}
-%     \label{fig:usecase3}
-% \end{figure}
+\subsection{Login Interface}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/ui4.jpeg}
+    \caption{Login Interface}
+    \label{fig:ui4}
+\end{figure}
 
-% \subsection{State Transition Diagram}
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     \centering
-%     \includegraphics[width=\textwidth]{images/statetransitionexample.png}
-%     \caption{State Transition Diagram For Online Shopping Application}
-%     \label{fig:usecase3}
-% \end{figure}
+\section{Appendix D: Detailed Use Case Specification}
 
-% \subsection{Data Flow Diagram}
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     %\includegraphics[scale=1.0]{DFD.pdf}
-%     \includegraphics[width=\textwidth]{DFD.pdf}
-% \end{figure}
+\subsection{UC-01: Generate Context-Aware Writing}
 
-% \begin{figure}[H] % Use 'H' to place the figure exactly here
-%     \includegraphics[scale=0.9]{DFD2.pdf}
-%     % \includegraphics[width=\textwidth]{DFD2.pdf}
-% \end{figure}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3cm}|p{13cm}|}
+\hline
+\textbf{Use Case ID} & UC-01 \\ \hline
+\textbf{Use Case Name} & Generate Context-Aware Writing \\ \hline
+\textbf{Primary Actor} & Writer (User) \\ \hline
+\textbf{Secondary Actors} & AI Processing Engine, Semantic Retrieval Module \\ \hline
+\textbf{Preconditions} & 
+\begin{itemize}
+    \item User is authenticated and logged into the system.
+    \item A project exists with at least one uploaded or created document.
+    \item Project content has been indexed and embeddings are stored.
+\end{itemize} \\ \hline
+
+\textbf{Postconditions} &
+\begin{itemize}
+    \item AI-generated content is displayed to the user.
+    \item Generated text may be saved to the project document.
+\end{itemize} \\ \hline
+
+\textbf{Trigger} & 
+User selects the ``Generate Content'' option within the writing interface. \\ \hline
+
+\textbf{Main Flow} &
+\begin{enumerate}
+    \item User opens a project document in the writing environment.
+    \item User requests content generation (e.g., continue writing, rewrite, expand).
+    \item System retrieves relevant context using semantic search.
+    \item System sends the prompt + context to the AI model.
+    \item AI model generates new content.
+    \item System displays the generated text to the user.
+    \item User may choose to accept, edit, or regenerate the content.
+\end{enumerate} \\ \hline
+
+\textbf{Alternate Flow} &
+\begin{enumerate}
+    \item[AF-1] User requests generation with no specific prompt.
+    \begin{enumerate}
+        \item System uses recent document content as context.
+        \item AI generates a default continuation.
+    \end{enumerate}
+    \item[AF-2] User modifies the context manually.
+    \begin{enumerate}
+        \item User provides custom text or notes.
+        \item System merges custom context with retrieved chunks.
+    \end{enumerate}
+\end{enumerate} \\ \hline
+
+\textbf{Exceptions} &
+\begin{enumerate}
+    \item[E1] No embeddings found: System prompts user to index project files.
+    \item[E2] AI service unavailable: System displays fallback message and suggests retrying.
+    \item[E3] Empty or invalid user request: User is asked to refine or re-enter the prompt.
+\end{enumerate} \\ \hline
+
+\textbf{Priority} & High \\ \hline
+\textbf{Frequency of Use} & Very frequent (core functionality) \\ \hline
+\end{tabular}
+\caption{Detailed Use Case: Generate Context-Aware Writing}
+\label{tab:usecase-uc01}
+\end{table}
