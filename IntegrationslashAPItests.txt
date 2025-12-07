@@ -1,0 +1,10 @@
+| ID | Component / Suite | Test case (category) | Expected result | Actual result (as documented) | Status | Notes |
+|---:|---|---|---|---|---:|---|
+| I-AUTH-01..12 | Auth API (integration) | User registration/login/refresh/logout/get current user | End-to-end authentication flows work | All cases documented; 12 tests | PASS | PHASE1 docs list 12 auth API tests |
+| I-PROJ-01..11 | Projects API (integration) | Create/list/get/update/delete/isolation | Project management flows work | 11 tests | PASS |  |
+| I-FILE-01..14 | Files API (integration) | Upload/list/get content/metadata/process/update/delete/reprocess/stats | File management flows | 14 tests | PASS |  |
+| I-SEARCH-01..12 | Search API (integration) | Semantic/hybrid search, filters, embeddings, similarity, autocomplete | Search flows work | 12 tests | PASS |  |
+| I-CHAT-01..05 | Chat API (integration) | Send message, context, history, auth checks | Chat endpoints respond | 5 tests | PASS / ACCEPTED CODES | Docs accept various status codes for chat (200, 404, 500, 501) in integration tests |
+| I-WORKFLOWS-01..03 | Integration workflows (E2E) | Full user workflow: register → create → upload → search → delete; file update; multi-file search | End-to-end scenario success | 3 tests | PASS | Docs report E2E workflows pass |
+| I-HEALTH-01..03 | System health (integration) | Root endpoint, /health, API docs | Available and healthy | 3 tests | PASS |  |
+

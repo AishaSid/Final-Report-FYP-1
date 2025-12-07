@@ -1,0 +1,49 @@
+| TC ID | Module | Test Case Name | Description | Test Type | Preconditions | Steps / Input | Expected Result | Priority | Tags / Req ID |
+|---|---|---|---|---|---|---|---|---|---|
+| TC-01 | System Health | Root Endpoint доступ | Verify root endpoint response | Black Box | API server running | GET / | 200 OK, valid response body | High | health |
+| TC-02 | System Health | Health Check API | Verify /health endpoint status | Black Box | API server running | GET /health | 200 OK, status = healthy | High | health |
+| TC-03 | System Health | API Docs доступ | Verify API docs accessibility | Black Box | API server running | GET /docs or /openapi | 200 OK, docs available | Medium | docs |
+| TC-04 | Authentication | User Registration (Valid) | Register user with valid data | Black Box | DB online, user not exist | POST /auth/register (valid payload) | 201 Created, user object returned | High | REQ-auth-1 |
+| TC-05 | Authentication | User Registration (Duplicate) | Register with existing email | Black Box | User already exists | POST /auth/register (duplicate email) | 400/409 error message | High | negative |
+| TC-06 | Authentication | Login (Valid) | Login with correct credentials | Black Box | Registered user exists | POST /auth/login | 200 OK, access token received | High | token |
+| TC-07 | Authentication | Login (Invalid) | Login with wrong password | Black Box | User exists | POST /auth/login (invalid creds) | 401 Unauthorized | High | negative |
+| TC-08 | Authentication | Get Current User | Retrieve user profile via token | Black Box | Valid access token | GET /auth/me | 200 OK, user data returned | Medium | auth |
+| TC-09 | Authentication | Logout | Invalidate user session/token | Black Box | Logged in session | POST /auth/logout | 200 OK, token invalidated | Medium | auth |
+| TC-10 | Authentication | Refresh Token | Refresh expired token | Black Box | Valid refresh token | POST /auth/refresh | 200 OK, new access token | Medium | auth |
+| TC-11 | Projects | Create Project | Create new project | Black Box | Authenticated user | POST /projects | 201 Created, project created | High | REQ-proj-1 |
+| TC-12 | Projects | List Projects | Retrieve projects list | Black Box | Multiple projects exist | GET /projects?page=1 | 200 OK, paginated list | Medium | pagination |
+| TC-13 | Projects | Get Project Details | Retrieve project by ID | Black Box | Project exists | GET /projects/{id} | 200 OK, correct project data | Medium | projects |
+| TC-14 | Projects | Update Project | Update project metadata | Black Box | Project exists, authenticated | PUT/PATCH /projects/{id} | 200 OK, updated values saved | High | projects |
+| TC-15 | Projects | Delete Project | Delete project and related data | Black Box | Project exists | DELETE /projects/{id} | 200/204, project removed | High | cleanup |
+| TC-16 | Projects | Project Access Control | Cross-user project access restriction | Black Box | Multiple users/projects | Access other user project | 403 Forbidden | High | security |
+| TC-17 | Projects | Duplicate Project Name | Create project with duplicate name | Black Box | Project with same name exists | POST /projects (duplicate name) | 400/409 validation error | Medium | validation |
+| TC-18 | Files | Upload File | Upload file to project | Black Box | Project exists, authenticated | POST /projects/{id}/files | 201 Created, file metadata | High | file-upload |
+| TC-19 | Files | List Project Files | Retrieve file list | Black Box | Files exist | GET /projects/{id}/files | 200 OK, list returned | Medium | pagination |
+| TC-20 | Files | Get File Metadata | Fetch file metadata by ID | Black Box | File exists | GET /files/{id}/metadata | 200 OK, metadata returned | Medium | files |
+| TC-21 | Files | Get File Content | Fetch file raw content | Black Box | File processed | GET /files/{id}/content | 200 OK, content served | Medium | content |
+| TC-22 | Files | Update File Content | Modify existing file | Black Box | File exists | PUT /files/{id}/content | 200 OK, updated content saved | High | files |
+| TC-23 | Files | Delete File | Delete file with cascade cleanup | Black Box | File exists | DELETE /files/{id} | 200/204, file removed | High | cleanup |
+| TC-24 | Files | File Access Control | Unauthorized file access | Black Box | Different user context | Access file without permission | 403 Forbidden | High | security |
+| TC-25 | Files | Reprocess File | Trigger background file processing | Black Box | File exists | POST /files/{id}/reprocess | 200/202 OK, processing started | Medium | async |
+| TC-26 | Files | Processing Status | Check file processing status | Black Box | File in processing | GET /files/{id}/status | 200 OK, correct status shown | Low | monitoring |
+| TC-27 | Search | Semantic Search | Perform vector-based search | Black Box | Embeddings exist | POST /search (natural query) | 200 OK, relevant results | High | embeddings |
+| TC-28 | Search | Hybrid Search | Perform hybrid (BM25 + vector) search | Black Box | Search index built | POST /search (hybrid params) | 200 OK, combined results | High | hybrid |
+| TC-29 | Search | Generate Embedding | Generate vector for text | Black Box | Model available | POST /embeddings | 200 OK, vector returned | Medium | embeddings |
+| TC-30 | Search | Calculate Similarity | Calculate similarity between texts | Black Box | Vectors exist | POST /similarity | 200 OK, similarity score | Low | utility |
+| TC-31 | Search | Find Similar Content | Retrieve similar content | Black Box | Indexed corpus | POST /similar | 200 OK, similar content list | Medium | search |
+| TC-32 | Search | Search with Filters | Filtered search | Black Box | Filterable data exists | POST /search (filters) | 200 OK, filtered list | Medium | filters |
+| TC-33 | Search | Search Pagination | Paginated search results | Black Box | Large dataset | POST /search (page/limit) | Paginated response | Low | pagination |
+| TC-34 | Search | Search Without Project | Missing project validation | Black Box | Invalid/missing project | POST /search | 400/422 validation error | High | negative |
+| TC-35 | Search | Embedding Statistics | Retrieve embedding metrics | Black Box | Embeddings stored | GET /embeddings/stats | 200 OK, stats returned | Low | monitoring |
+| TC-36 | Search | Autocomplete | Suggest search terms | Black Box | Index built | GET/POST /autocomplete | 200 OK, suggestions list | Low | UX |
+| TC-37 | Security | Unauthorized Access | Protected API without token | Black Box | No/invalid token | Call secured endpoint | 401/403 Unauthorized | Critical | security |
+| TC-38 | Chat | Send Chat Message | Send message to assistant | Black Box | Chat service available | POST /chat | 200 OK, AI response | Medium | chat |
+| TC-39 | Chat | Chat With Context | Contextual conversation | Black Box | Chat history exists | POST /chat (with context) | 200 OK, contextual reply | Medium | context |
+| TC-40 | Chat | Get Chat History | Retrieve conversation history | Black Box | Conversation exists | GET /chat/{id}/history | 200 OK, history list | Low | history |
+| TC-41 | E2E | Complete Project Workflow | End-to-end project lifecycle | Black Box | All services running | Full flow execution | Workflow succeeds end-to-end | High | e2e |
+| TC-42 | E2E | File Update Workflow | File update and re-index flow | Black Box | Existing file | Update file → reindex → search | Updated content found | High | e2e |
+| TC-43 | E2E | Multi-file Search | Cross-file search & similarity | Black Box | Multiple files indexed | Run cross-file searches | Correct cross-file matches | Medium | similarity |
+| TC-44 | Integration | Comprehensive Indexing | Full indexing pipeline | Black Box | NLP + vector DB live | Run complete pipeline | Pipeline completes successfully | Low | comprehensive |
+| TC-45 | Integration | Embedding Integration | Embedding + vector DB integration | Black Box | Embedding service active | Generate and store/query vectors | Vectors stored & retrievable | Medium | integration |
+| TC-46 | Integration | Async Indexing | Background async indexing | Black Box | Worker queue active | Trigger async tasks | Tasks complete successfully | Medium | async |
+| TC-47 | Integration | Relationship Discovery | Entity relationship detection | Black Box | Extracted entities | Run relationship detection | Correct relationships generated | Low | NLP |

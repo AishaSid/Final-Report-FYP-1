@@ -1,0 +1,54 @@
+| ID | Component / Suite | Test case | Expected result | Actual result (as documented) | Status | Notes |
+|---:|---|---|---|---|---:|---|
+| U-AUTH-01 | AuthService (unit) | User registration (valid) | New user created, 201/200, user object returned | Passing | PASS | One of 3 AuthService unit tests |
+| U-AUTH-02 | AuthService (unit) | Token creation (access & refresh) | Tokens returned and valid | Passing | PASS |  |
+| U-AUTH-03 | AuthService (unit) | Password hashing | Stored password hashed; verify succeeds | Passing | PASS |  |
+| U-FILE-01 | FileService (unit) | File metadata retrieval | Metadata returned correctly | Passing | PASS |  |
+| U-FILE-02 | FileService (unit) | File deletion with GridFS cleanup | File removed and GridFS entries cleared | Passing | PASS |  |
+| U-SEARCH-01 | SearchService (unit) | Autocomplete suggestions | Relevant suggestions returned | Passing | PASS |  |
+| U-TEXT-01 | TextExtractionService (unit) | Text extraction from files | Extracted text matches source | Passing | PASS |  |
+| U-TEXT-02 | TextExtractionService (unit) | Text chunking | Text split into semantic chunks | Passing | PASS |  |
+| U-TEXT-03 | TextExtractionService (unit) | Empty text handling | No crash; appropriate empty response | Passing | PASS |  |
+| U-TEXT-04 | TextExtractionService (unit) | Incremental file processing | Incremental results OK | Passing | PASS |  |
+| U-EMB-01 | EmbeddingService (unit) | Similarity calculation | Correct similarity scores | Passing | PASS | 1 of 3 embedding unit tests passed |
+| U-EMB-02 | EmbeddingService (unit) | Embedding statistics | Stats computed correctly | Passing | PASS | 1 test had minor mocking issue (total 2/3 passing) |
+| U-EMB-03 | EmbeddingService (unit) | Embedding generation / other (mock) | Expected embedding produced or mocked | Partial / Mocking issue | FAIL (partial) | 1 failing unit test due to mocking issue |
+| U-GROQ-01 | GroqService (unit) | Chat completion | Completion returned | Passing | PASS | GroqService 8/8 per docs |
+| U-GROQ-02 | GroqService (unit) | Response generation | Structured response | Passing | PASS |  |
+| U-GROQ-03 | GroqService (unit) | Context-aware generation | Context is respected | Passing | PASS |  |
+| U-GROQ-04 | GroqService (unit) | Conversation continuation | Continuation works | Passing | PASS |  |
+| U-GROQ-05 | GroqService (unit) | Model listing | Supported models listed | Passing | PASS |  |
+| U-GROQ-06 | GroqService (unit) | Token estimation | Token counts estimated | Passing | PASS |  |
+| U-GROQ-07 | GroqService (unit) | Error handling | Proper errors returned | Passing | PASS |  |
+| U-GROQ-08 | GroqService (unit) | (Other LLM behavior) | Expected behavior | Passing | PASS |  |
+| U-EDIT-01 | EditProposalService (unit) | Edit detection | Edits detected correctly | Passing | PASS | EditProposalService 12/12 passing |
+| U-EDIT-02 | EditProposalService (unit) | Edit proposal generation | Proposals generated | Passing | PASS |  |
+| U-EDIT-03 | EditProposalService (unit) | Response parsing | Parsed correctly | Passing | PASS |  |
+| U-EDIT-04 | EditProposalService (unit) | Diff generation | Diff matches edits | Passing | PASS |  |
+| U-EDIT-05 | EditProposalService (unit) | Prompt building | Prompt constructed | Passing | PASS |  |
+| U-COP-01 | CopilotService (unit) | Suggestion generation | Suggestions produced | Passing (6/8) | PARTIAL | CopilotService reported 6/8 tests passing; 2 tests have issues |
+| U-COP-02 | CopilotService (unit) | Story context gathering | Context collected | Passing (6/8) | PARTIAL |  |
+| U-COP-03 | CopilotService (unit) | Writing style analysis | Style analyzed | Passing (6/8) | PARTIAL |  |
+| U-COP-04 | CopilotService (unit) | Prompt building | Prompt constructed | Passing (6/8) | PARTIAL |  |
+| U-COP-05 | CopilotService (unit) | Suggestion cleaning | Suggestions cleaned | Passing (6/8) | PARTIAL |  |
+| U-RAG-01 | RAGContextService (unit) | Context assembly | Assembles context correctly | Passing (2/5) | PARTIAL | 2/5 unit tests pass; remaining have validation/ObjectId issues |
+| U-RAG-02 | RAGContextService (unit) | LLM formatting | Formatting OK | Passing (2/5) | PARTIAL |  |
+| U-RAG-03 | RAGContextService (unit) | Project overview | Validation issue | FAIL | FAIL | Validation issue reported in docs |
+| U-RAG-04 | RAGContextService (unit) | Entity context | Validation issue | FAIL | FAIL |  |
+| U-RAG-05 | RAGContextService (unit) | File filtering | ObjectId issue | FAIL | FAIL |  |
+| U-ENT-01 | EntityExtractionService (unit) | Character name validation | Validated | Passing (2/5) | PARTIAL | 2/5 passing; some need spaCy or mocking |
+| U-ENT-02 | EntityExtractionService (unit) | Location name validation | Validated | Passing (2/5) | PARTIAL |  |
+| U-ENT-03 | EntityExtractionService (unit) | Real location detection | Assertion issue | FAIL | FAIL |  |
+| U-ENT-04 | EntityExtractionService (unit) | Entity extraction | Needs spaCy | FAIL | FAIL |  |
+| U-ENT-05 | EntityExtractionService (unit) | Character extraction | Mock issue | FAIL | FAIL |  |
+| U-REL-01 | RelationshipDiscoveryService (unit) | Entity finding | OK | Passing (7/9) | PARTIAL | 7/9 passing; 2 have validation/minor issues |
+| U-REL-02 | RelationshipDiscoveryService (unit) | Context extraction | OK | Passing (7/9) | PARTIAL |  |
+| U-REL-03 | RelationshipDiscoveryService (unit) | Relationship classification | OK | Passing (7/9) | PARTIAL |  |
+| U-REL-04 | RelationshipDiscoveryService (unit) | Strength calculation | OK | Passing (7/9) | PARTIAL |  |
+| U-REL-05 | RelationshipDiscoveryService (unit) | Context quality | OK | Passing (7/9) | PARTIAL |  |
+| U-REL-06 | RelationshipDiscoveryService (unit) | Type factors | OK | Passing (7/9) | PARTIAL |  |
+| U-REL-07 | RelationshipDiscoveryService (unit) | Project discovery | OK | Passing (7/9) | PARTIAL |  |
+| U-REL-08 | RelationshipDiscoveryService (unit) | Co-occurrence analysis | Validation issue | FAIL | FAIL |  |
+| U-REL-09 | RelationshipDiscoveryService (unit) | Context quality threshold | Minor issue | FAIL | FAIL | Minor failure reported |
+| TOTAL-UNIT | — | Unit tests (summary) | Full suite (61 tests) | 61 total: 51 passing, 10 failing | MIXED | Overall unit test pass rate 83% (as documented) |
+

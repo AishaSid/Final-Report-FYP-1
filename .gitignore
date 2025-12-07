@@ -2,6 +2,34 @@
 *.aux
 *.bbl
 *.blg
+*.toc
+*.lof
+*.lot
+*.fdb_latexmk
+*.fls
+*.out
+*.log
+*.synctex.gz
+
+# Generated PDFs (build outputs)
+*.pdf
+
+# Editor/OS files
+.DS_Store
+Thumbs.db
+~$*
+
+# Latexmk cache
+latexmkrc
+
+# Overleaf-esque temp dirs
+_minted*
+build/
+dist/
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
 *.fdb_latexmk
 *.fls
 *.lof

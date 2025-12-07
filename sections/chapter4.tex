@@ -10,132 +10,285 @@ The implementation described in this chapter reflects the progress achieved up t
 
 The system implements a Retrieval-Augmented Generation (RAG) pipeline to enable intelligent document-based responses. The algorithm focuses only on the core functional requirements: document processing, semantic indexing, context retrieval, and AI response generation.
 
-\subsection{High-Level Algorithm Flow}
+The CoWriteIA implementation in this repository realizes a semantic indexing + RAG (retrieval-augmented generation) pipeline. The implemented components (and their primary locations in the codebase) are:
 
-The overall system follows this sequence:
+\begin{itemize}
+    \item Document chunking and preprocessing
+    \begin{itemize}
+        \item \texttt{backend/app/services/text\_extraction\_service.py :: TextExtractionService.chunk\_text / \_create\_text\_chunk}
+    \end{itemize}
+    \item Embedding generation and vector storage
+    \begin{itemize}
+        \item \texttt{backend/app/services/embedding\_service.py :: EmbeddingService.generate\_single\_embedding, generate\_embeddings, store\_text\_chunks\_with\_embeddings}
+        \item \texttt{backend/app/services/chroma\_service.py :: ChromaService.add\_embeddings, search\_similar}
+        \item \texttt{backend/app/repositories/text\_chunk\_repository.py :: update\_embedding, get\_chunks\_without\_embeddings, vector\_search / vector\_search\_chroma}
+    \end{itemize}
+    \item Context retrieval (semantic similarity)
+    \begin{itemize}
+        \item \texttt{backend/app/services/rag\_context\_service.py :: RAGContextService.assemble\_context}
+        \item \texttt{backend/app/services/search\_service.py :: SearchService.semantic\_search, find\_similar\_content}
+    \end{itemize}
+    \item AI response generation (RAG orchestration and assistant)
+    \begin{itemize}
+        \item \texttt{backend/app/services/ai\_chat\_service.py :: AIChatService.chat}
+        \item \texttt{backend/app/services/copilot\_service.py :: CopilotService.generate\_suggestion}
+    \end{itemize}
+\end{itemize}
 
+The following subsections contain concise algorithm descriptions derived from the actual implementation and precise pseudocode that maps to the repository functions.
+
+\subsection{High-level Flow}
 \begin{enumerate}
-    \item Document upload by the user
-    \item Text extraction and chunking
-    \item Embedding generation for semantic indexing
-    \item Vector storage
-    \item Query-based context retrieval
-    \item AI-based response generation
+    \item User uploads file via endpoints in \texttt{backend/app/api/v1/endpoints/files.py}.
+    \item File processing triggers text extraction and chunking:
+    \begin{itemize}
+        \item \texttt{TextExtractionService.extract\_text\_from\_file(...)} and \texttt{TextExtractionService.chunk\_text(...)}
+        \item Chunks are created as \texttt{TextChunk} models and persisted via \texttt{TextChunkRepository}.
+    \end{itemize}
+    \item Embeddings are generated for chunks:
+    \begin{itemize}
+        \item \texttt{EmbeddingService.generate\_embeddings(...)} / \texttt{generate\_single\_embedding(...)}
+        \item Embeddings saved both in chunk metadata (MongoDB) and in ChromaDB via \texttt{ChromaService} when available.
+    \end{itemize}
+    \item Semantic search / RAG:
+    \begin{itemize}
+        \item \texttt{RAGContextService.assemble\_context(...)} calls embedding/search services to retrieve top-$k$ chunks.
+        \item \texttt{SearchService} handles hybrid/fallback logic (ChromaDB preferred, fallback to MongoDB vector search).
+    \end{itemize}
+    \item LLM generation:
+    \begin{itemize}
+        \item \texttt{AIChatService.chat(...)} or \texttt{CopilotService.generate\_suggestion(...)} build a prompt from the retrieved context and call the configured LLM (\texttt{GroqService} or other).
+    \end{itemize}
+    \item Results returned to the client; metadata and analytics stored as needed.
 \end{enumerate}
 
-This structured flow enables efficient and relevant AI-powered responses.
+\subsection*{Example short sequence (mapping code $\rightarrow$ runtime)}
+\begin{enumerate}
+    \item User uploads file $\rightarrow$ API endpoint in \texttt{backend/app/api/v1/endpoints/files.py} triggers \texttt{process\_uploaded\_file}.
+    \item \texttt{process\_uploaded\_file} calls \texttt{TextExtractionService.chunk\_text} to create chunks.
+    \item Indexing background task (or immediate synchronous call) calls \texttt{EmbeddingService.generate\_embeddings} for chunks.
+    \item \texttt{EmbeddingService} stores embeddings via \texttt{TextChunkRepository} and \texttt{ChromaService}.
+    \item Later, user sends search/query $\rightarrow$ \texttt{RAGContextService.assemble\_context} retrieves top chunks using \texttt{ChromaService} or \texttt{SearchService}.
+    \item \texttt{AIChatService.chat} builds prompt with context and calls \texttt{GroqService} (LLM); response persisted and returned.
+\end{enumerate}
 
-\subsection{Document Chunking Algorithm}
+\subsection{Pseudocode: Document Chunking and Preprocessing}
 
-The system divides uploaded documents into smaller logical chunks. This improves semantic accuracy and ensures efficient storage.
+The system splits extracted text into sentence-aware chunks within a target size and optionally applies overlap. Each chunk is materialized using the implementation in \texttt{backend/app/services/text\_extraction\_service.py}.
 
-\begin{table}[!ht]
-\centering
-\caption{Document Chunking Algorithm}
-\begin{tabular}{p{0.9\linewidth}}
-\toprule
-\textbf{Pseudocode} \\
-\midrule
-Algorithm: Document Chunking \\
-Input: Full document text \\
-Output: List of text chunks \\
-Split the document into sentences. \\
-Initialize an empty list of chunks. \\
-Append sentences to a chunk until size limit is reached. \\
-Store the completed chunk and start a new one. \\
-Store remaining text as the final chunk. \\
-\bottomrule
-\end{tabular}
-\end{table}
+\begin{algorithm}[H]
+\caption{ChunkTextAndCreateChunks}
+\begin{algorithmic}[1]
+\Require \textit{file\_id}, \textit{project\_id}, \textit{full\_text}, \textit{max\_chunk\_size}, \textit{overlap} (optional), \textit{start\_chunk\_index} (default 0)
+\Ensure List of \texttt{TextChunk} models \textit{chunks}
+\State sentences $\leftarrow$ \texttt{TextExtractionService.\_split\_into\_sentences}(full\_text)
+\State chunks $\leftarrow$ [\,]
+\State current\_chunk\_sentences $\leftarrow$ [\,];\; current\_word\_count $\leftarrow$ 0;\; chunk\_index $\leftarrow$ start\_chunk\_index
+\For{each sentence $s$ in sentences}
+    \State sentence\_words $\leftarrow$ \texttt{count\_words}($s$)
+    \If{current\_word\_count + sentence\_words $>$ max\_chunk\_size \textbf{and} current\_chunk\_sentences not empty}
+        \State chunk\_text $\leftarrow$ \texttt{join}(current\_chunk\_sentences, " ")
+        \State start\_pos $\leftarrow$ compute absolute start in \textit{full\_text}
+        \State chunk\_model $\leftarrow$ \texttt{TextExtractionService.\_create\_text\_chunk}(file\_id, project\_id, chunk\_text, chunk\_index, start\_pos, current\_word\_count)
+        \State append chunk\_model to chunks
+        \State chunk\_index $\leftarrow$ chunk\_index + 1
+        \If{overlap configured}
+            \State current\_chunk\_sentences $\leftarrow$ take last \textit{overlap} words/sentences of current\_chunk\_sentences
+            \State current\_word\_count $\leftarrow$ \texttt{count\_words}(current\_chunk\_sentences)
+        \Else
+            \State current\_chunk\_sentences $\leftarrow$ [\,];\; current\_word\_count $\leftarrow$ 0
+        \EndIf
+    \EndIf
+    \State append $s$ to current\_chunk\_sentences;\; current\_word\_count $\leftarrow$ current\_word\_count + sentence\_words
+\EndFor
+\If{current\_chunk\_sentences not empty}
+    \State chunk\_text $\leftarrow$ \texttt{join}(current\_chunk\_sentences, " ")
+    \State start\_pos $\leftarrow$ compute absolute start in \textit{full\_text}
+    \State chunk\_model $\leftarrow$ \texttt{TextExtractionService.\_create\_text\_chunk}(file\_id, project\_id, chunk\_text, chunk\_index, start\_pos, current\_word\_count)
+    \State append chunk\_model to chunks
+\EndIf
+\State \Return chunks
+\end{algorithmic}
+\end{algorithm}
 \FloatBarrier
+
+\textbf{Notes:}
+\begin{itemize}
+    \item Uses sentence-aware splitting and target size with optional overlap per \texttt{TextExtractionService}.
+    \item Returns \texttt{TextChunk} Pydantic models; persistence occurs later (e.g., in \texttt{store\_text\_chunks\_with\_embeddings}).
+\end{itemize}
 
 \subsection{Embedding Generation and Storage}
 
-Each text chunk is converted into a numerical vector (embedding) that represents semantic meaning. These vectors are stored in a vector database to allow fast similarity search.
+This stage encodes chunked text into dense vectors and persists both the metadata and vectors. It maps to \texttt{EmbeddingService} and \texttt{ChromaService} usage in the codebase.
 
-\begin{table}[!ht]
-\centering
-\caption{Embedding Generation Algorithm}
-\begin{tabular}{p{0.9\linewidth}}
-\toprule
-\textbf{Pseudocode} \\
-\midrule
-Algorithm: Embedding Generation \\
-Input: List of text chunks \\
-Output: Vector embeddings \\
-Read each text chunk. \\
-Convert text chunks into semantic vector embeddings. \\
-Store embeddings in vector database. \\
-Link embeddings with source chunks. \\
-\bottomrule
-\end{tabular}
-\end{table}
+\begin{algorithm}[H]
+\caption{GenerateAndPersistEmbeddings}
+\begin{algorithmic}[1]
+\Require \textit{project\_id}, \textit{file\_id}, \textit{list\_of\_chunks} (content strings)
+\Ensure List of created/updated \texttt{TextChunk} records with embeddings
+\State chunk\_texts $\leftarrow$ [\,\texttt{chunk.content} for \textit{chunk} in \textit{list\_of\_chunks}\,]
+\State embeddings $\leftarrow$ \texttt{EmbeddingService.generate\_embeddings}(chunk\_texts)
+\Comment{Runs threadpool synchronous encoding; model loads lazily}
+\State created\_chunks $\leftarrow$ [\,]
+\For{each $(chunk\_info, embedding)$ in \texttt{zip}(list\_of\_chunks, embeddings)}
+    \State chunk\_model $\leftarrow$ \texttt{build TextChunk}(\,
+        file\_id $=$ file\_id,\; project\_id $=$ project\_id,\;\
+        content $=$ chunk\_info.content,\; start\_position $= \dots$,\; end\_position $= \dots$,\;\
+        chunk\_index $=$ chunk\_info.chunk\_index,\; word\_count $= \dots$,\;\
+        embedding\_vector $=$ embedding\,)
+    \State saved\_chunk $\leftarrow$ \texttt{TextChunkRepository.create}(chunk\_model)
+    \Comment{Persist metadata in MongoDB}
+    \State append saved\_chunk to created\_chunks
+\EndFor
+\If{\texttt{ChromaService} available}
+    \State chroma\_entries $\leftarrow$ map \textit{created\_chunks} to \{\texttt{id}, \texttt{embedding}, \texttt{metadata}\}
+    \State \texttt{ChromaService.add\_embeddings}(project\_id, chroma\_entries)
+\Else
+    \State Optionally store embeddings only within MongoDB fields
+\EndIf
+\State \Return created\_chunks
+\end{algorithmic}
+\end{algorithm}
 \FloatBarrier
 
-\subsection{Context Retrieval Algorithm (RAG)}
-
-When a user submits a query, the system retrieves the most relevant chunks using semantic similarity search.
-
-\begin{table}[!ht]
-\centering
-\caption{Context Retrieval Algorithm (RAG)}
-\begin{tabular}{p{0.9\linewidth}}
-\toprule
-\textbf{Pseudocode} \\
-\midrule
-Algorithm: Context Retrieval (RAG) \\
-Input: User query \\
-Output: Relevant text chunks \\
-Generate embedding for the user query. \\
-Search vector database for similar embeddings. \\
-Select top-k most relevant chunks. \\
-Return these chunks as context. \\
-\bottomrule
-\end{tabular}
-\end{table}
-\FloatBarrier
-
-\subsection{AI Response Generation Algorithm}
-
-The system combines the retrieved context with the user query and sends it to the language model to generate accurate, context-aware responses.
-
-\begin{table}[!ht]
-\centering
-\caption{AI Response Generation Algorithm}
-\begin{tabular}{p{0.9\linewidth}}
-\toprule
-\textbf{Pseudocode} \\
-\midrule
-Algorithm: AI Response Generation \\
-Input: User query and retrieved context \\
-Output: AI generated response \\
-Combine query and contextual information. \\
-Format the data into a prompt. \\
-Send the prompt to the language model. \\
-Receive and return the generated response. \\
-\bottomrule
-\end{tabular}
-\end{table}
-\FloatBarrier
-\subsection{Performance Considerations}
-
+\textbf{Implementation highlights:}
 \begin{itemize}
-    \item Chunking runs in linear time relative to document size.
-    \item Embedding generation dominates processing time.
-    \item Vector search operates in sub-linear time using approximate nearest neighbor indexing.
+    \item \textbf{Embedding model:} \texttt{sentence-transformers/all-MiniLM-L6-v2} (see embedding service and verification scripts).
+    \item \textbf{Dual storage:} Metadata in MongoDB \texttt{text\_chunk} documents; vectors in ChromaDB via \texttt{backend/app/services/chroma\_service.py}.
+    \item \textbf{Batch background tasks:} Celery jobs generate missing embeddings in \texttt{backend/app/tasks/indexing.py} (\texttt{batch\_generate\_embeddings\_task}).
 \end{itemize}
 
-\subsection{Reliability and Fault Handling}
+\subsection{Pseudocode: Context-aware Retrieval (RAG)}
 
-The system includes fallback mechanisms to handle:
+This step assembles a rich context from semantically similar chunks and optional entity/scene/relationship metadata.
 
+\begin{algorithm}[H]
+\caption{AssembleRAGContext}
+\begin{algorithmic}[1]
+\Require query \textit{Q}, \textit{project\_id}, optional \textit{file\_id}, max\_chunks \textit{k}
+\Ensure \textit{context\_payload}: list of chunks, entities, scenes, relationships
+\State query\_embedding $\leftarrow$ \texttt{EmbeddingService.generate\_single\_embedding}(Q)
+\If{\texttt{ChromaService} available}
+    \State vector\_hits $\leftarrow$ \texttt{ChromaService.search\_similar}(project\_id, query\_embedding, \texttt{n\_results} $=$ k)
+\Else
+    \State vector\_hits $\leftarrow$ \texttt{TextChunkRepository.vector\_search}(project\_id, query\_embedding, \texttt{limit} $=$ k)
+\EndIf
+\State top\_chunks $\leftarrow$ convert \textit{vector\_hits} to chunk payloads (\texttt{id}, \texttt{content}, \texttt{score}, \texttt{file\_id}, \texttt{positions})
+\If{include\_entities}
+    \State entities $\leftarrow$ \texttt{EntityRepository.get\_by\_project}(project\_id)
+    \State entity\_matches $\leftarrow$ identify entities mentioned in \textit{top\_chunks} (\texttt{EntityExtractionService} or string matching)
+\EndIf
+\If{include\_scenes}
+    \State scenes $\leftarrow$ \texttt{SceneRepository.find\_by\_project}(project\_id)
+    \State mapped\_scenes $\leftarrow$ map chunks to scenes when positions overlap or proximity matches
+\EndIf
+\If{include\_relationships}
+    \State relationships $\leftarrow$ \texttt{RelationshipRepository.find\_by\_project}(project\_id)
+\EndIf
+\State context\_payload $\leftarrow$ \{\texttt{"chunks"}: top\_chunks, \texttt{"entities"}: entity\_matches, \texttt{"scenes"}: mapped\_scenes, \texttt{"relationships"}: relationships (filtered)\}
+\State \Return context\_payload
+\end{algorithmic}
+\end{algorithm}
+\FloatBarrier
+
+\textbf{Notes:}
 \begin{itemize}
-    \item Missing embeddings
-    \item Vector database unavailability
-    \item Invalid user input
+    \item \texttt{RAGContextService.assemble\_context} collects chunk-level results, enriches them with entity and scene metadata, and returns a compact context mapping suitable for prompt building (see \texttt{backend/app/services/rag\_context\_service.py}).
+    \item \texttt{SearchService} implements hybrid logic and fallback ordering (Chroma $\rightarrow$ MongoDB \texttt{vectorSearch}).
 \end{itemize}
 
-These ensure stable system behavior under failure scenarios.
+\subsection{Pseudocode: AI Response Generation (RAG + LLM Call)}
+
+This step orchestrates context assembly, prompt construction, LLM invocation, and persistence. It corresponds to \texttt{AIChatService.chat} and \texttt{CopilotService.generate\_suggestion}.
+
+\begin{algorithm}[H]
+\caption{GenerateAIResponseWithContext}
+\begin{algorithmic}[1]
+\Require \textit{user\_message}, \textit{project\_id}, optional \textit{file\_id}, \textit{user\_id}, \textit{max\_context\_chunks}
+\Ensure \textit{assistant\_message}
+\State \textbf{Step A: Assemble RAG context}
+\State context $\leftarrow$ \texttt{RAGContextService.assemble\_context}(\,\texttt{query} $=$ user\_message, \texttt{project\_id} $=$ project\_id, \texttt{file\_id} $=$ file\_id, \texttt{max\_chunks} $=$ max\_context\_chunks\,)
+\State \textbf{Step B: Format context into LLM prompt}
+\State formatted\_context $\leftarrow$ \texttt{RAGContextService.format\_context\_for\_llm}(context)
+\State system\_prompt $\leftarrow$ \texttt{AIChatService.SYSTEM\_PROMPT}
+\State conversation\_history $\leftarrow$ \texttt{ConversationRepository.get\_latest\_messages}(conversation\_id or new)
+\State llm\_messages $\leftarrow$ \texttt{build\_messages\_list}(system\_prompt, conversation\_history, user\_message, formatted\_context)
+\Comment{system message, recent assistant/user turns, current user message, appended context}
+\State \textbf{Step C: Call LLM}
+\State assistant\_content $\leftarrow$ \texttt{GroqService.generate}(\texttt{messages} $=$ llm\_messages, \texttt{max\_tokens} $= \dots$, \texttt{model} $= \dots$)
+\State \textbf{Step D: Postprocess and store}
+\State cleaned $\leftarrow$ \texttt{clean\_text}(assistant\_content) \Comment{e.g., \texttt{CopilotService.\_clean\_suggestion}}
+\State \texttt{MessageRepository.save}(role $=$ \texttt{assistant}, content $=$ cleaned, context\_used $=$ context)
+\State update conversation metadata (message count, token usage, timestamps)
+\State \Return cleaned
+\end{algorithmic}
+\end{algorithm}
+\FloatBarrier
+
+\textbf{Implementation notes:}
+\begin{itemize}
+    \item \texttt{AIChatService.chat} orchestrates assembling context, formatting prompts, invoking the LLM, and persisting messages.
+    \item \texttt{CopilotService.generate\_suggestion} targets inline assistance: it infers writing style from RAG results, calls the LLM, then returns a cleaned suggestion and the context used (see \texttt{backend/app/services/copilot\_service.py}).
+\end{itemize}
+
+\subsection*{Complexity, Reliability, and Practical Concerns}
+\label{subsec:complexity-reliability-practical}
+
+\begin{itemize}
+    \item \textbf{Chunking complexity:} $O(n)$ in the number of sentences per document. Overlap increases effective storage but preserves local context for downstream retrieval.
+    \item \textbf{Embedding generation:} Dominated by model inference cost per chunk. Batch generation reduces overhead (indexing background tasks \texttt{batch\_generate\_missing\_embeddings}).
+    \item \textbf{Vector search:} ChromaDB uses efficient ANN (HNSW) with sub-linear query cost; fallback MongoDB vector aggregation may be slower for large collections.
+    \item \textbf{Fault tolerance:}
+    \begin{itemize}
+        \item Embedding/model calls may fail due to transient network or provider issues; services use \texttt{try/catch} with sensible fallbacks (see embedding service and verify scripts).
+        \item RAG assembly respects available services and degrades gracefully (ChromaDB optional; code falls back to MongoDB vector search when unavailable).
+    \end{itemize}
+    \item \textbf{Reindexing \& incremental updates:} \texttt{TextExtractionService.reprocess\_file} deletes existing chunks and marks the file ready for reprocessing; batch background tasks handle any missing embeddings.
+\end{itemize}
+
+\begin{algorithm}[H]
+\caption{ReprocessFileAndIncrementalUpdate}
+\begin{algorithmic}[1]
+\Require \textit{file\_id}, \textit{project\_id}
+\Ensure File is reindexed and embeddings regenerated as needed
+\State \texttt{TextChunkRepository.delete\_by\_file}(file\_id)
+\State \texttt{FileRepository.mark\_ready\_for\_processing}(file\_id)
+\State full\_text $\leftarrow$ \texttt{TextExtractionService.extract\_text\_from\_file}(file\_id)
+\State chunks $\leftarrow$ \texttt{TextExtractionService.chunk\_text}(project\_id, file\_id, full\_text, \texttt{max\_chunk\_size}, \texttt{overlap})
+\State \texttt{TextChunkRepository.bulk\_insert}(chunks)
+\State enqueue \texttt{batch\_generate\_missing\_embeddings}(project\_id, file\_id)
+\end{algorithmic}
+\end{algorithm}
+\FloatBarrier
+
+\subsection*{Concrete File References (Key Implementation Points)}
+\begin{itemize}
+    \item \textbf{Text chunking and models}
+    \begin{itemize}
+        \item \texttt{backend/app/services/text\_extraction\_service.py} :: \texttt{chunk\_text()}, \texttt{\_create\_text\_chunk()}, \texttt{\_split\_into\_sentences()}
+        \item \texttt{backend/app/repositories/text\_chunk\_repository.py} :: \texttt{create()}, \texttt{get\_by\_file()}, \texttt{get\_chunks\_without\_embeddings()}, \texttt{update\_embedding()}
+    \end{itemize}
+    \item \textbf{Embeddings and vector store}
+    \begin{itemize}
+        \item \texttt{backend/app/services/embedding\_service.py} :: \texttt{generate\_single\_embedding()}, \texttt{generate\_embeddings()}, \texttt{store\_text\_chunks\_with\_embeddings()}, \texttt{find\_similar\_chunks()}
+        \item \texttt{backend/app/services/chroma\_service.py} :: \texttt{get\_or\_create\_collection()}, \texttt{add\_embeddings()}, \texttt{search\_similar()}
+        \item \texttt{backend/app/tasks/indexing.py} :: \texttt{index\_document\_task()}, \texttt{batch\_generate\_embeddings\_task()}
+    \end{itemize}
+    \item \textbf{RAG and search}
+    \begin{itemize}
+        \item \texttt{backend/app/services/rag\_context\_service.py} :: \texttt{assemble\_context()}, \texttt{format\_context\_for\_llm()}
+        \item \texttt{backend/app/services/search\_service.py} :: \texttt{semantic\_search()}, \texttt{find\_similar\_content()}, hybrid logic
+    \end{itemize}
+    \item \textbf{LLM orchestration and assistants}
+    \begin{itemize}
+        \item \texttt{backend/app/services/ai\_chat\_service.py} :: \texttt{chat()}
+        \item \texttt{backend/app/services/copilot\_service.py} :: \texttt{generate\_suggestion()}, \texttt{\_gather\_story\_context()}
+    \end{itemize}
+\end{itemize}
+
+% See Appendix E for call signatures
+See Appendix~\ref{sec:appendix-e-pseudo-api} for pseudo-API call signatures.
 
 \section{External APIs and SDKs}
 \label{sec:external-apis}
@@ -226,6 +379,27 @@ All executed test cases were recorded and maintained as structured documentation
     \centering
     \includegraphics[width=0.90\textwidth]{images/tests2.png}
     \caption{BlackBox Tests fig:2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/bboxutest1.png}
+    \caption{Black Box Test 1}
+    \label{fig:bboxutest1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/bboxutest2.png}
+    \caption{Black Box Test 2}
+    \label{fig:bboxutest2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/bboxutest3.png}
+    \caption{Black Box Test 3}
+    \label{fig:bboxutest3}
 \end{figure}
 
 \subsubsection{Black Box Testing Summary}
@@ -378,6 +552,34 @@ Overall Pass Rate & 91\% & Stable with minor issues \\ \hline
 \end{table}
 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/wboxutest1.png}
+    \caption{Unit Test Evidence 1}
+    \label{fig:wboxutest1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/wboxutest2.png}
+    \caption{Unit Test Evidence 2}
+    \label{fig:wboxutest2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/wboxutest3.png}
+    \caption{Unit Test Evidence 3}
+    \label{fig:wboxutest3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/wboxutest4.png}
+    \caption{Unit Test Evidence 4}
+    \label{fig:wboxutest4}
+\end{figure}
+
 \subsection{Test Evidence}
 
 \begin{figure}[H]
@@ -392,4 +594,24 @@ Overall Pass Rate & 91\% & Stable with minor issues \\ \hline
 The testing results showed that the system successfully handled valid requests and appropriately rejected invalid or unauthorized access attempts. The core workflows such as project creation, file uploading, semantic search, and AI-assisted responses were verified to function as expected during the current iteration.
 
 All critical defects identified during testing were resolved, and remaining enhancements will be addressed in the next development phase.
+
+\subsection{Integration Testing}
+\label{subsec:integration-testing}
+
+\subsubsection{Summary}
+
+Integration tests validated end-to-end behavior across API layers, databases, and services using the repository's pytest setup. The suite covers authentication, projects, files, search, chat, workflows, and health checks.
+
+\begin{itemize}
+    \item \textbf{Total integration tests:} ~60 (PHASE1 \& TESTING\_GUIDE) — reported as 100\% passing in the repo docs.
+    \item \textbf{Pytest configuration:} Tests discovered under \texttt{backend/tests/}; notable files include \texttt{test\_auth\_api.py}, \texttt{test\_projects\_api.py}, \texttt{test\_files\_api.py}, \texttt{test\_search\_api.py}, \texttt{test\_chat\_api.py}, \texttt{test\_integration\_workflows.py}, and \texttt{test\_health.py}.
+    \item \textbf{Notes:} Built from testing documentation (\texttt{WHITEBOX\_TESTING\_COMPLETE.md}, \texttt{PHASE1\_TESTING\_SUMMARY.md}, \texttt{TESTING\_GUIDE.md}, \texttt{TEST\_SUMMARY.md}) and concrete repo files (\texttt{conftest.py}, \texttt{pytest.ini}, run scripts). Exact counts may vary with updates.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/apiintegtest1.png}
+    \caption{Integration API Test Evidence}
+    \label{fig:apiintegtest1}
+\end{figure}
 
