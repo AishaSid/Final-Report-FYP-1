@@ -204,6 +204,71 @@ Figure~\ref{fig:domainmodel} presents the complete domain model for CoWriteIA. I
 
 \section{Design Models}
 
+\subsection{Sequence Diagrams}
+This subsection presents sequence diagrams for the four main system flows, based on the implementation logic described in Chapter 4. Each diagram outlines the interactions between system components for a key workflow.
+
+\subsubsection*{1. File Upload \& Chunking}
+	\textbf{Actors:} User, API Endpoint, TextExtractionService, TextChunkRepository
+
+    \begin{enumerate}
+        \item User uploads file via API endpoint.
+        \item API calls \texttt{TextExtractionService.extract\_text\_from\_file}.
+        \item API calls \texttt{TextExtractionService.chunk\_text} to split text into chunks.
+        \item Chunks are created and saved via \texttt{TextChunkRepository}.
+    \end{enumerate}
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth]{images/seqdiag_FileUploadAndChunking.png}
+        \caption{Sequence Diagram: File Upload \& Chunking}
+        \label{fig:seq-upload-chunk-image}
+    \end{figure}
+
+    
+
+\subsubsection*{2. Semantic Search / RAG Context Retrieval}
+    \textbf{Actors:} User, API Endpoint, RAGContextService, ChromaService, SearchService, TextChunkRepository
+
+    \begin{enumerate}
+        \item User sends a search/query.
+        \item API calls \texttt{RAGContextService.assemble\_context}.
+        \item RAGContextService generates query embedding.
+        \item ChromaService or TextChunkRepository performs vector search.
+        \item Top chunks and metadata are assembled and returned.
+    \end{enumerate}
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth]{images/seqdiag_SemanticSearchRAGContextRetrieval.png}
+        \caption{Sequence Diagram: Semantic Search / RAG Context Retrieval}
+        \label{fig:seqdiag_semantic_rag}
+    \end{figure}
+
+\subsubsection*{3. AI Response Generation}
+    \textbf{Actors:} User, API Endpoint, RAGContextService, AIChatService, GroqService, MessageRepository
+
+\begin{enumerate}
+    \item User sends a message.
+    \item API calls \texttt{RAGContextService.assemble\_context}.
+    \item Context is formatted for LLM.
+    \item AIChatService builds prompt and calls GroqService (LLM).
+    \item LLM response is cleaned and saved via MessageRepository.
+    \item Response returned to user.
+\end{enumerate}
+
+\subsubsection*{4. Reprocessing \& Incremental Update}
+    extbf{Actors:} User/Admin, TextChunkRepository, FileRepository, TextExtractionService, EmbeddingService
+
+\begin{enumerate}
+    \item File is marked for reprocessing.
+    \item Existing chunks are deleted.
+    \item File is marked ready for processing.
+    \item Text is extracted and chunked again.
+    \item Chunks are inserted.
+    \item Embeddings are regenerated and stored.
+\end{enumerate}
+
+\FloatBarrier
 \subsection{State Transition Diagram}
 
 Figure~\ref{fig:state} illustrates state transitions for key entities based on user actions and system events. The diagram shows how entities move between states:
